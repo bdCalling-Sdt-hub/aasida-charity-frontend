@@ -1,0 +1,5 @@
+.authBg {
+  background-image: url("../../../public/images/auth/auth-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

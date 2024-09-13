@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Uncut Sans";
+  src: url("../../public/fonts/Uncut-Sans-VF.ttf");
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+
+  /* Custom colors */
+  --foundation-primary-white-darker: #575858;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  .primary-button {
+    @apply block h-10 w-full rounded-lg bg-primary-black py-1 text-center font-semibold text-white;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --------- Custom Utilities ----------- */
+
+.flex-center-start {
+  @apply flex items-center justify-start;
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.flex-center-between {
+  @apply flex items-center justify-between;
+}
+
+.flex-start-between {
+  @apply flex items-start justify-between;
+}
+
+.flex-center-start {
+  @apply flex items-center justify-start;
+}
+
+.flex-start-start {
+  @apply flex items-start justify-start;
+}
+
+.border-red {
+  @apply border border-red-500;
+}
+
+/* Ant design custom styles */
+.ant-form * {
+  font-family: "Uncut Sans", sans-serif !important;
+}

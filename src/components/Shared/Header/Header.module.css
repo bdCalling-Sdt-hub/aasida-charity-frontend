@@ -1,0 +1,8 @@
+/* ------------ Common Header Background ------------ */
+.headerBg {
+  background-image: url("../../../../public/images/header/header-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 325px;
+}
