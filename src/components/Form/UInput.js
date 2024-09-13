@@ -1,4 +1,5 @@
 import { Form, Input } from "antd";
+import { Map } from "lucide";
 import { Controller } from "react-hook-form";
 
 const UInput = ({
@@ -9,15 +10,23 @@ const UInput = ({
   placeholder,
   defaultValue,
   disabled = false,
+  labelStyles = {},
   className,
   suffix,
+  style,
 }) => {
   return (
     <Controller
       name={name}
       render={({ field, fieldState: { error } }) => (
         <Form.Item
-          label={label}
+          label={
+            Object.keys(labelStyles)?.length > 0 ? (
+              <label style={labelStyles}>{label}</label>
+            ) : (
+              label
+            )
+          }
           validateStatus={error ? "error" : ""}
           help={error ? error.message : ""}
         >
@@ -28,7 +37,7 @@ const UInput = ({
               id={name}
               size={size}
               placeholder={placeholder}
-              className={`${className} h-9`}
+              className={`h-9 ${className}`}
             />
           ) : (
             <Input
@@ -38,8 +47,9 @@ const UInput = ({
               size={size}
               placeholder={placeholder}
               disabled={disabled}
-              className={`${className} h-9`}
+              className={`h-9 ${className}`}
               suffix={suffix}
+              style={style}
             />
           )}
         </Form.Item>

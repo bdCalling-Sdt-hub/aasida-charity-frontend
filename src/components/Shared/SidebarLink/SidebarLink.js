@@ -10,7 +10,7 @@ export default function SidebarLink({ link }) {
       key={link?.key}
       href={link?.route}
       className={clsx(
-        "rounded-lg border border-secondary-1/75 py-2 text-center font-medium transition-all duration-300 ease-in-out hover:bg-secondary-1 hover:text-primary-white",
+        "rounded-lg border border-secondary-1/75 px-10 py-2 text-center font-medium transition-all duration-300 ease-in-out hover:bg-secondary-1 hover:text-primary-white",
         pathname?.toLowerCase() === link?.route
           ? "bg-secondary-1 text-primary-white"
           : "bg-transparent text-secondary-1",

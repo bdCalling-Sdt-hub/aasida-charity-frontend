@@ -1,0 +1,4 @@
+.current-qualification-form
+  :where(.css-dev-only-do-not-override-cg5zrz).ant-form-item {
+  margin: 0 !important;
+}

@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Provider from "@/lib/Provider";
+import { Toaster } from "sonner";
 
 const uncutSans = localFont({
   src: "../../public/fonts/Uncut-Sans-VF.ttf",
@@ -23,7 +24,7 @@ export default function RootLayout({ children }) {
       <head>
         <link
           rel="shortcut icon"
-          href="../../public/images/favicon.svg"
+          href="/public/images/favicon.svg"
           type="image/x-icon"
         />
       </head>
@@ -33,6 +34,8 @@ export default function RootLayout({ children }) {
       >
         <Provider>
           <main>{children}</main>
+
+          <Toaster />
         </Provider>
       </body>
     </html>

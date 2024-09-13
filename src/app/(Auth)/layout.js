@@ -13,8 +13,8 @@ export default function AuthLayout({ children }) {
         },
       }}
     >
-      <div className={`${styles.authBg} border-red flex-center min-h-screen`}>
-        <div className="w-[90%] py-10 md:w-[75%] lg:w-[60%] xl:w-[45%]">
+      <div className={`${styles.authBg} flex-center min-h-screen`}>
+        <div className="w-[90%] py-10 md:w-[75%] lg:w-[60%] xl:w-[35%]">
           {children}
         </div>
       </div>
