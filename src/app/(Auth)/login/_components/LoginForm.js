@@ -7,25 +7,47 @@ import UInput from "@/components/Form/UInput";
 import { MailOutlined } from "@ant-design/icons";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
-import { setUser } from "@/redux/features/authSlice";
+import { setUser } from "@/redux/features/auth/authSlice";
 import { useRouter } from "next/navigation";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
+import { Button } from "antd";
+import { ErrorToast, SuccessToast } from "@/utils/custom-toast";
+import { jwtDecode } from "jwt-decode";
+import Cookies from "js-cookie";
 
 export default function LoginForm() {
+  const [login, { isLoading: isLoggingIn }] = useLoginMutation();
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const onSubmit = (data) => {
-    let toastId = toast.loading("Logging in...");
+  const onSubmit = async (data) => {
+    try {
+      const res = await login(data).unwrap();
 
-    setTimeout(() => {
-      dispatch(setUser({ user: true, token: "token" }));
+      if (res?.success) {
+        // Decode access token for user data
+        dispatch(
+          setUser({
+            user: jwtDecode(res?.data?.accessToken),
+            token: res?.data?.accessToken,
+          }),
+        );
 
-      toast.success("Logged in successfully!", {
-        id: toastId,
-      });
+        // Set access token to cookies for middleware intervention
+        Cookies.set(
+          "financial-assistance-access-token",
+          res?.data?.accessToken,
+          {
+            path: "/",
+          },
+        );
 
-      router.push("/");
-    }, 3000);
+        router.push("/");
+        SuccessToast("Login Successful");
+      }
+    } catch (error) {
+      ErrorToast(error?.error);
+    }
   };
 
   return (
@@ -49,9 +71,13 @@ export default function LoginForm() {
           placeholder="********"
         />
 
-        <button type="submit" className="primary-button">
+        <Button
+          loading={isLoggingIn}
+          htmlType="submit"
+          className="primary-button"
+        >
           Submit
-        </button>
+        </Button>
       </div>
     </FormWrapper>
   );

@@ -9,9 +9,10 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
-import authSlice from "./features/authSlice.js";
-import { baseApi } from "./api/baseApi.js";
+import authSlice from "./features/auth/authSlice.js";
+
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
+import { baseApi } from "./api/baseApi.js";
 
 const createNoopStorage = () => {
   return {
@@ -42,7 +43,7 @@ const persistedAuthReducer = persistReducer(
 
 export const store = configureStore({
   reducer: {
-    // [baseApi.reducerPath]: baseApi.reducer,
+    [baseApi.reducerPath]: baseApi.reducer,
     auth: persistedAuthReducer,
   },
   middleware: (getDefaultMiddlewares) =>

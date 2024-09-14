@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Provider from "@/lib/Provider";
 import { Toaster } from "sonner";
+import NextTopLoader from "nextjs-toploader";
 
 const uncutSans = localFont({
   src: "../../public/fonts/Uncut-Sans-VF.ttf",
@@ -35,7 +36,8 @@ export default function RootLayout({ children }) {
         <Provider>
           <main>{children}</main>
 
-          <Toaster />
+          <Toaster richColors duration={1800} position="bottom-center" />
+          <NextTopLoader />
         </Provider>
       </body>
     </html>

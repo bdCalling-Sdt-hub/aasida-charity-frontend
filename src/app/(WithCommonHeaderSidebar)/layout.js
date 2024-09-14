@@ -9,7 +9,7 @@ export default function CommonLayout({ children }) {
     <div className="bg-primary-white">
       <Header />
 
-      <div className="flex-start-between relative z-10 mx-auto min-h-screen w-full items-stretch gap-x-6 overflow-hidden py-8 md:w-[90%] xl:w-[85%]">
+      <div className="flex-start-between relative z-10 mx-auto min-h-screen w-full items-stretch gap-x-10 overflow-hidden py-8 md:w-[90%] xl:w-[85%]">
         {/* --------- Floating Bg Effect --------- */}
         <Image
           src={floatingBgEffect}
@@ -22,7 +22,7 @@ export default function CommonLayout({ children }) {
           <Sidebar />
         </div>
 
-        <div className="min-h-[80vh] border-l border-l-gray-300/80 px-6 lg:w-3/4">
+        <div className="min-h-[80vh] border-l border-l-gray-300/80 px-10 lg:w-3/4">
           {children}
         </div>
       </div>

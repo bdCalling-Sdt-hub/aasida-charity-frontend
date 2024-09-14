@@ -3,7 +3,7 @@ import { tagTypesList } from "../tagTypes";
 import { getBackendBaseUrl } from "@/config/envConfig";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: getBackendBaseUrl(),
+  baseUrl: "http://172.16.0.2:8000/api/v1",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token;
@@ -19,10 +19,13 @@ const baseQueryWithRefreshToken = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
   if (result?.error?.status === 401) {
-    const res = await fetch(`${getBackendBaseUrl()}/auth/refresh-token`, {
-      method: "POST",
-      credentials: "include",
-    });
+    const res = await fetch(
+      `http://172.16.0.2:8000/api/v1/auth/refresh-token`,
+      {
+        method: "POST",
+        credentials: "include",
+      },
+    );
 
     const data = await res.json();
     if (data?.data?.accessToken) {

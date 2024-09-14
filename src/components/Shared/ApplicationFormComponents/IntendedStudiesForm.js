@@ -102,18 +102,9 @@ export default function IntendedStudiesForm() {
             University Tuition Fee (AU$/Year)
           </p>
 
-          <UInput
-            type="number"
-            name="intendedStudiesOption1.universityTuition"
-          />
-          <UInput
-            type="number"
-            name="intendedStudiesOption2.universityTuition"
-          />
-          <UInput
-            type="number"
-            name="intendedStudiesOption3.universityTuition"
-          />
+          <UInput type="number" name="intendedStudiesOption1.tuitionFee" />
+          <UInput type="number" name="intendedStudiesOption2.tuitionFee" />
+          <UInput type="number" name="intendedStudiesOption3.tuitionFee" />
         </div>
 
         {/* 7th Row */}
@@ -123,8 +114,8 @@ export default function IntendedStudiesForm() {
           <USelect
             name="intendedStudiesOption1.alreadyApplied"
             options={[
-              { value: "Yes", label: "Yes" },
-              { value: "No", label: "No" },
+              { value: true, label: "Yes" },
+              { value: false, label: "No" },
             ]}
             placeholder="Yes/No"
           />
@@ -132,8 +123,8 @@ export default function IntendedStudiesForm() {
           <USelect
             name="intendedStudiesOption2.alreadyApplied"
             options={[
-              { value: "Yes", label: "Yes" },
-              { value: "No", label: "No" },
+              { value: true, label: "Yes" },
+              { value: false, label: "No" },
             ]}
             placeholder="Yes/No"
           />
@@ -141,8 +132,8 @@ export default function IntendedStudiesForm() {
           <USelect
             name="intendedStudiesOption3.alreadyApplied"
             options={[
-              { value: "Yes", label: "Yes" },
-              { value: "No", label: "No" },
+              { value: true, label: "Yes" },
+              { value: false, label: "No" },
             ]}
             placeholder="Yes/No"
           />
@@ -155,8 +146,8 @@ export default function IntendedStudiesForm() {
           <USelect
             name="intendedStudiesOption1.admissionGranted"
             options={[
-              { value: "Yes", label: "Yes" },
-              { value: "No", label: "No" },
+              { value: true, label: "Yes" },
+              { value: false, label: "No" },
             ]}
             placeholder="Yes/No"
           />
@@ -164,8 +155,8 @@ export default function IntendedStudiesForm() {
           <USelect
             name="intendedStudiesOption2.admissionGranted"
             options={[
-              { value: "Yes", label: "Yes" },
-              { value: "No", label: "No" },
+              { value: true, label: "Yes" },
+              { value: false, label: "No" },
             ]}
             placeholder="Yes/No"
           />
@@ -173,8 +164,8 @@ export default function IntendedStudiesForm() {
           <USelect
             name="intendedStudiesOption3.admissionGranted"
             options={[
-              { value: "Yes", label: "Yes" },
-              { value: "No", label: "No" },
+              { value: true, label: "Yes" },
+              { value: false, label: "No" },
             ]}
             placeholder="Yes/No"
           />
@@ -187,8 +178,8 @@ export default function IntendedStudiesForm() {
           <USelect
             name="intendedStudiesOption1.australianVisaApplied"
             options={[
-              { value: "Yes", label: "Yes" },
-              { value: "No", label: "No" },
+              { value: true, label: "Yes" },
+              { value: false, label: "No" },
             ]}
             placeholder="Yes/No"
           />
@@ -196,8 +187,8 @@ export default function IntendedStudiesForm() {
           <USelect
             name="intendedStudiesOption2.australianVisaApplied"
             options={[
-              { value: "Yes", label: "Yes" },
-              { value: "No", label: "No" },
+              { value: true, label: "Yes" },
+              { value: false, label: "No" },
             ]}
             placeholder="Yes/No"
           />
@@ -205,8 +196,8 @@ export default function IntendedStudiesForm() {
           <USelect
             name="intendedStudiesOption3.australianVisaApplied"
             options={[
-              { value: "Yes", label: "Yes" },
-              { value: "No", label: "No" },
+              { value: true, label: "Yes" },
+              { value: false, label: "No" },
             ]}
             placeholder="Yes/No"
           />
@@ -219,8 +210,8 @@ export default function IntendedStudiesForm() {
           <USelect
             name="intendedStudiesOption1.australianVisaGranted"
             options={[
-              { value: "Yes", label: "Yes" },
-              { value: "No", label: "No" },
+              { value: true, label: "Yes" },
+              { value: false, label: "No" },
             ]}
             placeholder="Yes/No"
           />
@@ -228,8 +219,8 @@ export default function IntendedStudiesForm() {
           <USelect
             name="intendedStudiesOption2.australianVisaGranted"
             options={[
-              { value: "Yes", label: "Yes" },
-              { value: "No", label: "No" },
+              { value: true, label: "Yes" },
+              { value: false, label: "No" },
             ]}
             placeholder="Yes/No"
           />
@@ -237,8 +228,8 @@ export default function IntendedStudiesForm() {
           <USelect
             name="intendedStudiesOption3.australianVisaGranted"
             options={[
-              { value: "Yes", label: "Yes" },
-              { value: "No", label: "No" },
+              { value: true, label: "Yes" },
+              { value: false, label: "No" },
             ]}
             placeholder="Yes/No"
           />

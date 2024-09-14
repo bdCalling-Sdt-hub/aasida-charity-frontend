@@ -3,7 +3,7 @@
 import { useSelector } from "react-redux";
 import SidebarLink from "../SidebarLink/SidebarLink";
 import { useDispatch } from "react-redux";
-import { logout } from "@/redux/features/authSlice";
+import { logout } from "@/redux/features/auth/authSlice";
 import { toast } from "sonner";
 
 const NON_AUTH_LINKS = [
@@ -59,8 +59,9 @@ const AUTHENTICATED_LINKS = [
 
 export default function Sidebar() {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
-  console.log(user);
+  const userId =
+    useSelector((state) => state.auth.user)?._id ||
+    useSelector((state) => state.auth.user)?.userId;
 
   const handleLogout = () => {
     dispatch(logout());
@@ -70,12 +71,12 @@ export default function Sidebar() {
   return (
     <div className="md:w-full">
       <div className="flex flex-col items-stretch gap-y-5">
-        {!user &&
+        {!userId &&
           NON_AUTH_LINKS.map((link) => (
             <SidebarLink key={link.key} link={link} />
           ))}
 
-        {user && (
+        {userId && (
           <>
             {AUTHENTICATED_LINKS.map((link) => (
               <SidebarLink key={link.key} link={link} />

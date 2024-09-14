@@ -21,12 +21,20 @@ const registerValidationSchema = z
     email: z
       .string({ required_error: "Email is required" })
       .email({ message: "Email is invalid!" }),
-    mobileNumber: z
-      .string({ required_error: "Mobile phone number is required" })
-      .min(10, { message: "Mobile number must be at least 10 digits long" })
-      .regex(/^\+[1-9]\d{1,14}$/, {
-        message: "Invalid phone number, include country code",
-      }),
+    phoneNumber: z.object(
+      {
+        countryCode: z.number(),
+        areaCode: z.string(),
+        phoneNumber: z.string({
+          required_error: "Phone number is required",
+        }),
+        isoCode: z.string({
+          required_error: "ISO code is required",
+        }),
+      },
+      { required_error: "Phone number is required" },
+    ),
+
     password: z
       .string({ required_error: "Password is required" })
       .min(8, { message: "Password must be at least 8 characters long" })
