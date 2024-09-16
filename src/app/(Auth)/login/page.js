@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="">
+    <div>
       {/* Go back button */}
       <Link
         href="/home"

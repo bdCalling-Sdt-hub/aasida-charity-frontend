@@ -4,7 +4,7 @@ import USelect from "@/components/Form/USelect";
 import { Divider } from "antd";
 import React from "react";
 
-export default function EnglishProficiencyForm() {
+export default function EnglishProficiencyForm({ data }) {
   return (
     <div className="mt-16">
       <h3 className="mb-5 text-3xl font-bold">Current Qualifications:</h3>
@@ -39,6 +39,7 @@ export default function EnglishProficiencyForm() {
             <div className="flex-center-start gap-x-2">
               <p>Test: </p>
               <USelect
+                defaultValue={data?.englishProficiency?.testName}
                 name="englishTest"
                 placeholder="Select English Test"
                 options={[

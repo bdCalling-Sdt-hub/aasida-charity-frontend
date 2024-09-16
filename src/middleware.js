@@ -30,5 +30,6 @@ export const config = {
     "/update-application",
     "/register",
     "/login",
+    "/verify-otp",
   ],
 };

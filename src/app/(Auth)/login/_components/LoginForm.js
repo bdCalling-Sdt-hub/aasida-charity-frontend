@@ -33,20 +33,13 @@ export default function LoginForm() {
           }),
         );
 
-        // Set access token to cookies for middleware intervention
-        Cookies.set(
-          "financial-assistance-access-token",
-          res?.data?.accessToken,
-          {
-            path: "/",
-          },
-        );
-
-        router.push("/");
+        router.push("/apply-application");
+        router.refresh();
         SuccessToast("Login Successful");
       }
     } catch (error) {
-      ErrorToast(error?.error);
+      console.log(error);
+      ErrorToast(error?.message);
     }
   };
 

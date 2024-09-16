@@ -11,7 +11,7 @@ const LABEL_STYLES = {
 
 const CITIZENSHIP_OPTIONS = ["India", "Pakistan", "Bangladesh", "Nepal"];
 
-export default function PersonalInfoForm() {
+export default function PersonalInfoForm({ data }) {
   return (
     <>
       <h3 className="mb-5 text-3xl font-bold">Personal Information:</h3>
@@ -38,6 +38,7 @@ export default function PersonalInfoForm() {
         <USelect
           name="citizenship"
           label="Citizenship"
+          defaultValue={data?.citizenship}
           options={CITIZENSHIP_OPTIONS.map((option) => {
             return { value: option, label: option };
           })}

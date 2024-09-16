@@ -2,23 +2,22 @@ import Header from "@/components/Shared/Header/Header";
 import Sidebar from "@/components/Shared/Sidebar/Sidebar";
 import Image from "next/image";
 import floatingBgEffect from "/public/images/floatingline.png";
-import { Divider } from "antd";
 
 export default function CommonLayout({ children }) {
   return (
-    <div className="bg-primary-white">
+    <div className="relative z-10 bg-primary-white">
+      {/* --------- Floating Bg Effect --------- */}
+      <Image
+        src={floatingBgEffect}
+        alt="floating bg effect"
+        className="absolute -left-10 top-[200px] -z-10 opacity-75"
+      />
+      {/* -------------------------------------- */}
+
       <Header />
 
-      <div className="flex-start-between relative z-10 mx-auto min-h-screen w-full items-stretch gap-x-10 overflow-hidden py-8 md:w-[90%] xl:w-[85%]">
-        {/* --------- Floating Bg Effect --------- */}
-        <Image
-          src={floatingBgEffect}
-          alt="floating bg effect"
-          className="absolute -left-[400px] -top-[400px] -z-10"
-        />
-        {/* -------------------------------------- */}
-
-        <div className="lg:w-[25%]">
+      <div className="flex-stretch-between relative z-10 mx-auto h-max min-h-screen w-full gap-x-10 py-8 md:w-[90%] xl:w-[85%]">
+        <div className="sticky top-10 h-max lg:w-[25%]">
           <Sidebar />
         </div>
 

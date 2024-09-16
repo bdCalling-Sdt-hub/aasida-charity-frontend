@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 const initialState = {
   user: null,
@@ -14,11 +15,21 @@ const authSlice = createSlice({
 
       state.user = user;
       state.token = token;
+
+      // Set access-token in cookies
+      Cookies.set("financial-assistance-access-token", token, {
+        path: "/",
+      });
     },
 
     logout: (state) => {
       state.user = null;
       state.token = null;
+
+      // Set access-token in cookies
+      Cookies.remove("financial-assistance-access-token", {
+        path: "/",
+      });
     },
   },
 });

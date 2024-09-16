@@ -1,16 +1,23 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { tagTypesList } from "../tagTypes";
 import { getBackendBaseUrl } from "@/config/envConfig";
+import { getFromSessionStorage } from "@/utils/handle-session-storage";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://172.16.0.2:8000/api/v1",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token;
+    const signUpToken = getFromSessionStorage("sign-up-token");
 
     if (token) {
       headers.set("authorization", `Bearer ${token}`);
     }
+
+    if (signUpToken) {
+      headers.set("token", signUpToken);
+    }
+
     return headers;
   },
 });

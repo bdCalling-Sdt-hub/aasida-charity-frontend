@@ -79,6 +79,10 @@ body {
   @apply flex items-start justify-start;
 }
 
+.flex-stretch-between {
+  @apply flex items-stretch justify-between;
+}
+
 .border-red {
   @apply border border-red-500;
 }
@@ -98,4 +102,17 @@ body {
 
 .ant-collapse * {
   font-family: var(--font-uncut-sans) !important;
+}
+
+.ant-otp * {
+  font-family: var(--font-uncut-sans) !important;
+  font-size: 1.3rem !important;
+  font-weight: bold !important;
+}
+.ant-otp {
+  column-gap: 16px !important;
+}
+.ant-otp input {
+  height: 55px !important;
+  width: 55px !important;
 }

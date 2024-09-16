@@ -5,20 +5,27 @@ import SidebarLink from "../SidebarLink/SidebarLink";
 import { useDispatch } from "react-redux";
 import { logout } from "@/redux/features/auth/authSlice";
 import { toast } from "sonner";
+import { LogoutOutlined } from "@ant-design/icons";
+import { useRouter } from "next/navigation";
 
 const NON_AUTH_LINKS = [
   {
     key: 1,
+    label: "Home",
+    route: "/home",
+  },
+  {
+    key: 2,
     label: "Login",
     route: "/login",
   },
   {
-    key: 2,
+    key: 3,
     label: "Create Account",
     route: "/register",
   },
   {
-    key: 3,
+    key: 4,
     label: "Privacy Policy",
     route: "/privacy-policy",
   },
@@ -27,31 +34,36 @@ const NON_AUTH_LINKS = [
 const AUTHENTICATED_LINKS = [
   {
     key: 1,
+    label: "Home",
+    route: "/home",
+  },
+  {
+    key: 2,
     label: "Apply for Financial Assistance",
     route: "/apply-application",
   },
   {
-    key: 2,
+    key: 3,
     label: "Update Existing Application for Financial Assistance",
     route: "/update-application",
   },
   {
-    key: 3,
+    key: 4,
     label: "Draft Agreement for Financial Assistance",
     route: "/draft-agreement",
   },
   {
-    key: 4,
+    key: 5,
     label: "Privacy Policy",
     route: "/privacy-policy",
   },
   {
-    key: 5,
+    key: 6,
     label: "FAQ",
     route: "/faq",
   },
   {
-    key: 6,
+    key: 7,
     label: "Contact Us",
     route: "/contact",
   },
@@ -59,12 +71,12 @@ const AUTHENTICATED_LINKS = [
 
 export default function Sidebar() {
   const dispatch = useDispatch();
-  const userId =
-    useSelector((state) => state.auth.user)?._id ||
-    useSelector((state) => state.auth.user)?.userId;
+  const router = useRouter();
+  const userId = useSelector((state) => state.auth.user)?.userId;
 
   const handleLogout = () => {
     dispatch(logout());
+    router.refresh();
     toast.success("Logged out successfully!");
   };
 
@@ -86,7 +98,7 @@ export default function Sidebar() {
               className="rounded-lg border border-secondary-1/75 px-10 py-2 text-center font-medium text-secondary-1 transition-all duration-300 ease-in-out hover:bg-secondary-1 hover:text-primary-white"
               onClick={handleLogout}
             >
-              Logout
+              <LogoutOutlined className="mr-2" /> Logout
             </button>
           </>
         )}

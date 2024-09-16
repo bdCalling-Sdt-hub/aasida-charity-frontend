@@ -7,6 +7,7 @@ import { useSignUpMutation } from "@/redux/features/auth/authApi";
 import { setUser } from "@/redux/features/auth/authSlice";
 import { authValidationSchema } from "@/schema/authSchema";
 import { ErrorToast, SuccessToast } from "@/utils/custom-toast";
+import { setToSessionStorage } from "@/utils/handle-session-storage";
 import { LoadingOutlined } from "@ant-design/icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "antd";
@@ -51,28 +52,18 @@ export default function RegisterForm() {
 
     try {
       const res = await signUp(updatedData).unwrap();
-      console.log(res);
 
       if (res?.success) {
-        SuccessToast("Account created successfully");
+        SuccessToast("Success", "Please verify your email with OTP");
 
-        // Set access token to cookies for middleware intervention
-        Cookies.set(
-          "financial-assistance-access-token",
-          res?.data?.accessToken,
-          {
-            path: "/",
-          },
-        );
-
-        // Set user to store
-        dispatch(setUser({ user: res.data }));
+        // Set to token to session-storage
+        setToSessionStorage("sign-up-token", res?.data?.token);
 
         // Navigate to home page
-        router.push("/");
+        router.push("/verify-otp");
       }
     } catch (error) {
-      ErrorToast(error?.error);
+      ErrorToast(error?.message);
     }
   };
 

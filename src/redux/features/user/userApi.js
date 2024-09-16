@@ -1,4 +1,5 @@
 import { baseApi } from "@/redux/api/baseApi";
+import { tagTypes } from "@/redux/tagTypes";
 
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -7,8 +8,19 @@ const userApi = baseApi.injectEndpoints({
         url: `/users/${id}`,
         method: "GET",
       }),
+
+      providesTags: [tagTypes.user],
+    }),
+
+    getMyApplications: builder.query({
+      query: () => ({
+        url: "/applications/my-applications",
+        method: "GET",
+      }),
+
+      providesTags: [tagTypes.applications],
     }),
   }),
 });
 
-export const { useGetSingleUserQuery } = userApi;
+export const { useGetSingleUserQuery, useGetMyApplicationsQuery } = userApi;
