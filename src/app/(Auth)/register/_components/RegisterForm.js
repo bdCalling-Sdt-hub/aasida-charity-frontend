@@ -52,9 +52,10 @@ export default function RegisterForm() {
 
     try {
       const res = await signUp(updatedData).unwrap();
+      console.log("res =======> ", res);
 
       if (res?.success) {
-        SuccessToast("Success", "Please verify your email with OTP");
+        SuccessToast("Account created successfully");
 
         // Set to token to session-storage
         setToSessionStorage("sign-up-token", res?.data?.token);

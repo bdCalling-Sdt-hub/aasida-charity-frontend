@@ -39,7 +39,7 @@ export default function LoginForm() {
       }
     } catch (error) {
       console.log(error);
-      ErrorToast(error?.message);
+      ErrorToast(error?.data?.message);
     }
   };
 

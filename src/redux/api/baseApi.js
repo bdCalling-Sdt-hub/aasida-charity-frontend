@@ -4,7 +4,7 @@ import { getBackendBaseUrl } from "@/config/envConfig";
 import { getFromSessionStorage } from "@/utils/handle-session-storage";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://172.16.0.2:8000/api/v1",
+  baseUrl: getBackendBaseUrl(),
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token;
@@ -26,13 +26,10 @@ const baseQueryWithRefreshToken = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
   if (result?.error?.status === 401) {
-    const res = await fetch(
-      `http://172.16.0.2:8000/api/v1/auth/refresh-token`,
-      {
-        method: "POST",
-        credentials: "include",
-      },
-    );
+    const res = await fetch(getBackendBaseUrl(), {
+      method: "POST",
+      credentials: "include",
+    });
 
     const data = await res.json();
     if (data?.data?.accessToken) {
@@ -47,7 +44,7 @@ const baseQueryWithRefreshToken = async (args, api, extraOptions) => {
 
       result = await baseQuery(args, api, extraOptions);
     } else {
-      // api.dispatch(logout());
+      api.dispatch(logout());
     }
   }
 
