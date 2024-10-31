@@ -4,22 +4,17 @@ import FormWrapper from "@/components/Form/FormWrapper/FormWrapper";
 import UInput from "@/components/Form/UInput";
 import UPhoneInput from "@/components/Form/UPhoneInput";
 import { useSignUpMutation } from "@/redux/features/auth/authApi";
-import { setUser } from "@/redux/features/auth/authSlice";
 import { authValidationSchema } from "@/schema/authSchema";
 import { ErrorToast, SuccessToast } from "@/utils/custom-toast";
 import { setToSessionStorage } from "@/utils/handle-session-storage";
-import { LoadingOutlined } from "@ant-design/icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "antd";
-import { Loader } from "lucide";
 import { useRouter } from "next/navigation";
-import { Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 export default function RegisterForm() {
   const [signUp, { isLoading: isSigningUp }] = useSignUpMutation();
   const router = useRouter();
-  const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
     const updatedData = {
@@ -52,10 +47,13 @@ export default function RegisterForm() {
 
     try {
       const res = await signUp(updatedData).unwrap();
-      console.log("res =======> ", res);
 
       if (res?.success) {
-        SuccessToast("Account created successfully");
+        SuccessToast(
+          "Account creation successfully",
+          null,
+          "Please verify your email",
+        );
 
         // Set to token to session-storage
         setToSessionStorage("sign-up-token", res?.data?.token);

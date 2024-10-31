@@ -7,6 +7,10 @@ import { logout } from "@/redux/features/auth/authSlice";
 import { toast } from "sonner";
 import { LogoutOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { AlignJustify } from "lucide-react";
+import clsx from "clsx";
+import { X } from "lucide-react";
 
 const NON_AUTH_LINKS = [
   {
@@ -73,6 +77,7 @@ export default function Sidebar() {
   const dispatch = useDispatch();
   const router = useRouter();
   const userId = useSelector((state) => state.auth.user)?.userId;
+  const [showMobileSidebar, setShowMobileSidebar] = useState(false);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -81,8 +86,9 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="md:w-full">
-      <div className="flex flex-col items-stretch gap-y-5">
+    <div>
+      {/* ------------------ Desktop Version ------------------ */}
+      <div className="hidden flex-col items-stretch gap-y-5 lg:flex">
         {!userId &&
           NON_AUTH_LINKS.map((link) => (
             <SidebarLink key={link.key} link={link} />
@@ -102,6 +108,57 @@ export default function Sidebar() {
             </button>
           </>
         )}
+      </div>
+
+      {/* ------------------ Mobile Version ------------------ */}
+      <div className="block px-2 lg:hidden">
+        <button
+          onClick={() => setShowMobileSidebar(true)}
+          className="mb-5 rounded-xl bg-slate-200 p-2"
+        >
+          <AlignJustify size={25} />
+        </button>
+
+        {/* Mobile Sidebar Content */}
+        <div
+          className={clsx(
+            "fixed left-0 top-0 h-screen w-full bg-white transition-all duration-300 ease-in-out",
+            showMobileSidebar
+              ? "visible translate-x-0"
+              : "invisible -translate-x-[100vw]",
+          )}
+        >
+          {/* Close Icon */}
+          <button
+            className="absolute right-2 top-2"
+            onClick={() => setShowMobileSidebar(false)}
+          >
+            <X size={25} />
+          </button>
+
+          {!userId && (
+            <div className="flex h-screen flex-col justify-center gap-y-5 px-5">
+              {NON_AUTH_LINKS.map((link) => (
+                <SidebarLink key={link.key} link={link} />
+              ))}
+            </div>
+          )}
+
+          {userId && (
+            <div className="flex h-screen flex-col justify-center gap-y-5 px-5">
+              {AUTHENTICATED_LINKS.map((link) => (
+                <SidebarLink key={link.key} link={link} />
+              ))}
+
+              <button
+                className="rounded-lg border border-secondary-1/75 px-10 py-2 text-center font-medium text-secondary-1 transition-all duration-300 ease-in-out hover:bg-secondary-1 hover:text-primary-white"
+                onClick={handleLogout}
+              >
+                <LogoutOutlined className="mr-2" /> Logout
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

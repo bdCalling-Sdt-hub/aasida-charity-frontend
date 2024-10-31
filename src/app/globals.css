@@ -116,3 +116,7 @@ body {
   height: 55px !important;
   width: 55px !important;
 }
+
+.ant-tag {
+  font-family: var(--font-uncut-sans) !important;
+}

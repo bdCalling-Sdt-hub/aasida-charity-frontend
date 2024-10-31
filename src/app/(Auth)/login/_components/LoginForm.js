@@ -38,7 +38,6 @@ export default function LoginForm() {
         SuccessToast("Login Successful");
       }
     } catch (error) {
-      console.log(error);
       ErrorToast(error?.data?.message);
     }
   };

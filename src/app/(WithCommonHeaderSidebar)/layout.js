@@ -14,14 +14,16 @@ export default function CommonLayout({ children }) {
       />
       {/* -------------------------------------- */}
 
+      {/* Header */}
       <Header />
 
-      <div className="flex-stretch-between relative z-10 mx-auto h-max min-h-screen w-full gap-x-10 py-8 md:w-[90%] xl:w-[85%]">
-        <div className="sticky top-10 h-max lg:w-[25%]">
+      {/* Main Content */}
+      <div className="relative z-10 mx-auto h-max min-h-screen w-full py-8 md:w-[90%] lg:flex lg:items-stretch lg:justify-between lg:gap-x-10 xl:w-[85%]">
+        <div className="top-10 h-max lg:sticky lg:w-[25%]">
           <Sidebar />
         </div>
 
-        <div className="min-h-[80vh] border-l border-l-gray-300/80 px-10 lg:w-3/4">
+        <div className="min-h-[80vh] border-l border-l-gray-300/80 p-5 px-10 lg:w-3/4">
           {children}
         </div>
       </div>

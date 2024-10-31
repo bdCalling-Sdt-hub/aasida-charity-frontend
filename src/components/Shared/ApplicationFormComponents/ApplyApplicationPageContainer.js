@@ -14,6 +14,7 @@ import { CheckOutlined } from "@ant-design/icons";
 import { useApplyForApplicationMutation } from "@/redux/features/application/applicationApi";
 import { ErrorToast, SuccessToast } from "@/utils/custom-toast";
 import TextSkeleton from "@/components/TextSkeleton/TextSkeleton";
+import { Tag } from "antd";
 
 export default function ApplyApplicationPageContainer() {
   const { user } = useSelector((state) => state.auth);
@@ -85,7 +86,7 @@ export default function ApplyApplicationPageContainer() {
       <section className="space-y-5 text-primary-black">
         <h3 className="text-3xl font-bold">Account Holder Details</h3>
 
-        <div className="grid w-full grid-cols-2 gap-x-16 gap-y-4">
+        <div className="grid w-full grid-cols-1 gap-16 gap-y-4 lg:grid-cols-2">
           <div className="flex-center-between text-xl font-medium">
             <p>Surname: </p>
             <p>{isUserLoading ? <TextSkeleton /> : userData.surName}</p>
@@ -120,11 +121,13 @@ export default function ApplyApplicationPageContainer() {
               {isUserLoading ? (
                 <TextSkeleton />
               ) : userData?.isVerified ? (
-                <p className="text-green-500">
-                  Verified <CheckOutlined className="text-sm" />
-                </p>
+                <Tag color="green" className="text-base">
+                  Verified
+                </Tag>
               ) : (
-                <p className="text-yellow-500">Not Verified</p>
+                <Tag color="error" className="text-base">
+                  Not Verified
+                </Tag>
               )}
             </p>
           </div>

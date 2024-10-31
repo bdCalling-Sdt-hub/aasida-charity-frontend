@@ -24,7 +24,6 @@ export default function UpdateApplicationPageContainer() {
 
   // Applicant data
   const applicantData = application?.applicant;
-  console.log(application);
 
   // Set default values
   // TODO: Split the data into different components
@@ -337,7 +336,7 @@ export default function UpdateApplicationPageContainer() {
             <div className="flex h-[50vh] flex-col items-center justify-center space-y-5">
               <Empty />
 
-              <div className="flex-center-start gap-x-2 text-lg">
+              <div className="flex-center-start flex-col gap-x-2 text-lg lg:flex-row">
                 <p>Seems like you've not applied yet.</p>
                 <Link
                   href="/apply-application"

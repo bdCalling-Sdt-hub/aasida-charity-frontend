@@ -1,6 +1,5 @@
 import Link from "next/link";
 import LoginForm from "./_components/LoginForm";
-import { ArrowLeft } from "lucide";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 
 export const metadata = {
@@ -16,7 +15,7 @@ export default function LoginPage() {
         href="/home"
         className="mb-10 block space-x-2 font-medium text-primary-white"
       >
-        <ArrowLeftOutlined className="mr-1 text-sm" /> Home
+        <ArrowLeftOutlined className="mr-1 text-sm" /> Back to home
       </Link>
 
       <h2 className="mb-6 text-center text-5xl font-extrabold text-primary-white">

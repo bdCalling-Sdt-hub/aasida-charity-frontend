@@ -9,7 +9,7 @@ export default function EnglishProficiencyForm({ data }) {
     <div className="mt-16">
       <h3 className="mb-5 text-3xl font-bold">Current Qualifications:</h3>
 
-      <div className="rounded-lg bg-white p-4 shadow">
+      <div className="overflow-auto rounded-lg bg-white p-4 shadow">
         <div className="flex-center-start">
           <p className="text-center font-medium lg:w-1/4">English Test Taken</p>
           <Divider
@@ -49,7 +49,7 @@ export default function EnglishProficiencyForm({ data }) {
               />
             </div>
 
-            <div className="flex-center-start gap-x-2">
+            <div className="flex-center-start w-max gap-x-2">
               <p>Date: </p>
 
               <UDatePicker
@@ -61,10 +61,12 @@ export default function EnglishProficiencyForm({ data }) {
               />
             </div>
           </div>
+
           <Divider
             type="vertical"
             style={{ backgroundColor: "gray", height: "80px" }}
           />
+
           <div className="grid w-full grid-cols-5 gap-x-5 px-4 text-center font-medium">
             <UInput name="englishTestResult.overall" type="number" />
             <UInput name="englishTestResult.reading" type="number" />

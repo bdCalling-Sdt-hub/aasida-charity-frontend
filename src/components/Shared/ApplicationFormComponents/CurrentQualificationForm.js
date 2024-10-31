@@ -3,14 +3,15 @@ import "./CurrentQualificationForm.css";
 import UDatePicker from "@/components/Form/UDatePicker";
 
 // Common style
-const rowWith4Col = "grid grid-cols-4 lg:mx-auto lg:w-[90%] gap-x-10";
+const rowWith4Col =
+  "grid grid-cols-4 lg:mx-auto lg:w-[90%] w-max gap-x-10 whitespace-nowrap px-5 lg:px-0";
 
 export default function CurrentQualificationForm() {
   return (
     <div className="mt-16">
       <h3 className="mb-5 text-3xl font-bold">Current Qualifications:</h3>
 
-      <div className="space-y-8 rounded-lg bg-white py-6 shadow">
+      <div className="space-y-8 overflow-auto rounded-lg bg-white py-6 shadow">
         {/* 1st row */}
         <div className={`${rowWith4Col} text-center font-medium`}>
           <p className="text-start">Title</p>

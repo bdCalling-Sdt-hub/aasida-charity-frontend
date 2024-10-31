@@ -2,6 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { tagTypesList } from "../tagTypes";
 import { getBackendBaseUrl } from "@/config/envConfig";
 import { getFromSessionStorage } from "@/utils/handle-session-storage";
+import { jwtDecode } from "jwt-decode";
+import { logout } from "../features/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: getBackendBaseUrl(),
@@ -31,6 +33,11 @@ const baseQueryWithRefreshToken = async (args, api, extraOptions) => {
       credentials: "include",
     });
 
+    if (!res.ok) {
+      api.dispatch(logout());
+      return result;
+    }
+
     const data = await res.json();
     if (data?.data?.accessToken) {
       const user = api.getState().auth.user;
@@ -38,7 +45,7 @@ const baseQueryWithRefreshToken = async (args, api, extraOptions) => {
       api.dispatch(
         setUser({
           user,
-          token: data.data.accessToken,
+          token: data?.data?.accessToken,
         }),
       );
 
@@ -48,13 +55,6 @@ const baseQueryWithRefreshToken = async (args, api, extraOptions) => {
     }
   }
 
-  // Handle meta for pagination
-  // if (result?.data?.meta) {
-  //   result = {
-  //     data: result?.data?.data,
-  //     meta: result?.data?.meta,
-  //   };
-  // }
   return result;
 };
 

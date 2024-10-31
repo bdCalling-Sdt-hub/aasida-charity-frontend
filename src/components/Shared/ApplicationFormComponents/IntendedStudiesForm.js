@@ -3,7 +3,8 @@ import UInput from "@/components/Form/UInput";
 import USelect from "@/components/Form/USelect";
 
 // Common style
-const rowWith4Col = "grid grid-cols-4 lg:mx-auto lg:w-[90%] gap-x-10";
+const rowWith4Col =
+  "grid grid-cols-4 lg:mx-auto lg:w-[90%] gap-x-10 w-max px-5 lg:px-0";
 
 export default function IntendedStudiesForm({ data }) {
   return (
@@ -12,7 +13,7 @@ export default function IntendedStudiesForm({ data }) {
         Intended Post-graduate Studies in Australia:
       </h3>
 
-      <section className="space-y-8 rounded-lg bg-white py-6 shadow">
+      <section className="space-y-8 overflow-auto rounded-lg bg-white py-6 shadow">
         {/* 1st row */}
         <div className={`${rowWith4Col} text-center font-medium`}>
           <p className="text-start">Title</p>
