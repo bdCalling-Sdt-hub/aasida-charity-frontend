@@ -68,11 +68,11 @@ export default function EnglishProficiencyForm({ data }) {
           />
 
           <div className="grid w-full grid-cols-5 gap-x-5 px-4 text-center font-medium">
-            <UInput name="englishTestResult.overall" type="number" />
+            <UInput name="englishTestResult.overall" type="number" max={9} />
             <UInput name="englishTestResult.reading" type="number" />
             <UInput name="englishTestResult.writing" type="number" />
-            <UInput name="englishTestResult.speaking" type="number" />
-            <UInput name="englishTestResult.listening" type="number" />
+            <UInput name="englishTestResult.speaking" type="number" max={9} />
+            <UInput name="englishTestResult.listening" type="number" max={9} />
           </div>
         </div>
       </div>

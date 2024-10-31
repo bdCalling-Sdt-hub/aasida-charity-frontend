@@ -13,6 +13,7 @@ const UInput = ({
   className,
   suffix,
   style,
+  max,
 }) => {
   return (
     <Controller
@@ -49,6 +50,7 @@ const UInput = ({
               className={`h-9 ${className}`}
               suffix={suffix}
               style={style}
+              max={max}
             />
           )}
         </Form.Item>

@@ -9,7 +9,16 @@ const applicationApi = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+
+    updateApplication: builder.mutation({
+      query: (data) => ({
+        url: `/applications/${data.id}`,
+        method: "PATCH",
+        body: data?.data,
+      }),
+    }),
   }),
 });
 
-export const { useApplyForApplicationMutation } = applicationApi;
+export const { useApplyForApplicationMutation, useUpdateApplicationMutation } =
+  applicationApi;

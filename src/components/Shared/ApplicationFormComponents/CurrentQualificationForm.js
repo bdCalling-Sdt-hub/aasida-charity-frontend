@@ -99,18 +99,18 @@ export default function CurrentQualificationForm() {
         <div className={`${rowWith4Col}`}>
           <p className="text-lg font-semibold">Overall Marks (%)</p>
 
-          <UInput type="number" name="undergraduate.marks" />
-          <UInput type="number" name="postgraduate1.marks" />
-          <UInput type="number" name="postgraduate2.marks" />
+          <UInput type="number" name="undergraduate.marks" max={100} />
+          <UInput type="number" name="postgraduate1.marks" max={100} />
+          <UInput type="number" name="postgraduate2.marks" max={100} />
         </div>
 
         {/* 7th Row */}
         <div className={`${rowWith4Col}`}>
           <p className="text-lg font-semibold">Overall GPA</p>
 
-          <UInput type="number" name="undergraduate.gpa" />
-          <UInput type="number" name="postgraduate1.gpa" />
-          <UInput type="number" name="postgraduate2.gpa" />
+          <UInput type="number" name="undergraduate.gpa" max={4} />
+          <UInput type="number" name="postgraduate1.gpa" max={4} />
+          <UInput type="number" name="postgraduate2.gpa" max={4} />
         </div>
       </div>
     </div>

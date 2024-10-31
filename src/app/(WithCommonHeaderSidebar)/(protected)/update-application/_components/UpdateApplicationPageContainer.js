@@ -7,229 +7,268 @@ import IntendedStudiesForm from "@/components/Shared/ApplicationFormComponents/I
 import PersonalInfoForm from "@/components/Shared/ApplicationFormComponents/PersonalInfoForm";
 import BookLoader from "@/components/Shared/BookLoader/BookLoader";
 import TextSkeleton from "@/components/TextSkeleton/TextSkeleton";
+import { useUpdateApplicationMutation } from "@/redux/features/application/applicationApi";
 import { useGetMyApplicationsQuery } from "@/redux/features/user/userApi";
 import { applyApplicationSchema } from "@/schema/applyApplicationSchema";
 import { CheckOutlined, EditFilled } from "@ant-design/icons";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Alert } from "antd";
-import { Empty } from "antd";
+import { Button, Empty } from "antd";
 import Link from "next/link";
+import dayjs from "dayjs";
+import { ErrorToast, SuccessToast } from "@/utils/custom-toast";
+import { useEffect, useState } from "react";
 
 export default function UpdateApplicationPageContainer() {
   // Get applications data
   const { data: applicationsRes, isLoading: isApplicationsLoading } =
     useGetMyApplicationsQuery();
   const applications = applicationsRes?.data || []; // Note: This will only work if there is only one application
-  const application = applications[0] || {};
+  const application = applications?.[0] || {};
+  console.log(application);
+
+  // Update application api handler
+  const [updateApplication, { isLoading: isUpdating }] =
+    useUpdateApplicationMutation();
 
   // Applicant data
   const applicantData = application?.applicant;
 
   // Set default values
   // TODO: Split the data into different components
-  const defaultValues = {
-    dateOfBirth: application?.dateOfBirth,
-    citizenship: application?.citizenship,
-    homeAddress: application?.homeAddress,
+  const [defaultValues, setDefaultValues] = useState({});
 
-    // CURRENT QUALIFICATIONS
-    "undergraduate.degree":
-      application?.qualifications?.length > 0 &&
-      application?.qualifications[0]?.degree,
-    "postgraduate1.degree":
-      application?.qualifications?.length > 0 &&
-      application?.qualifications[1]?.degree,
-    "postgraduate2.degree":
-      application?.qualifications?.length > 0 &&
-      application?.qualifications[2]?.degree,
-    "undergraduate.discipline":
-      application?.qualifications?.length > 0 &&
-      application?.qualifications[0]?.discipline,
-    "postgraduate1.discipline":
-      application?.qualifications?.length > 1 &&
-      application?.qualifications[1]?.discipline,
-    "postgraduate2.discipline":
-      application?.qualifications?.length > 2 &&
-      application?.qualifications[2]?.discipline,
+  useEffect(() => {
+    if (application) {
+      setDefaultValues({
+        // Basic info
+        dateOfBirth: application?.dateOfBirth
+          ? dayjs(new Date(application.dateOfBirth)).format("MM-DD-YYYY")
+          : null,
+        citizenship: application?.citizenship ?? null,
+        homeAddress: application?.homeAddress ?? null,
 
-    // University
-    "undergraduate.university":
-      application?.qualifications?.length > 0 &&
-      application?.qualifications[0]?.university,
-    "postgraduate1.university":
-      application?.qualifications?.length > 1 &&
-      application?.qualifications[1]?.university,
-    "postgraduate2.university":
-      application?.qualifications?.length > 2 &&
-      application?.qualifications[2]?.university,
+        // CURRENT QUALIFICATIONS with number conversion
+        "undergraduate.degree":
+          application?.qualifications?.[0]?.degree ?? null,
+        "postgraduate1.degree":
+          application?.qualifications?.[1]?.degree ?? null,
+        "postgraduate2.degree":
+          application?.qualifications?.[2]?.degree ?? null,
 
-    // Commenced
-    "undergraduate.commenced":
-      application?.qualifications?.length > 0 &&
-      application?.qualifications[0]?.commenced,
-    "postgraduate1.commenced":
-      application?.qualifications?.length > 1 &&
-      application?.qualifications[1]?.commenced,
-    "postgraduate2.commenced":
-      application?.qualifications?.length > 2 &&
-      application?.qualifications[2]?.commenced,
+        "undergraduate.discipline":
+          application?.qualifications?.[0]?.discipline ?? null,
+        "postgraduate1.discipline":
+          application?.qualifications?.[1]?.discipline ?? null,
+        "postgraduate2.discipline":
+          application?.qualifications?.[2]?.discipline ?? null,
 
-    // Completed
-    "undergraduate.completed":
-      application?.qualifications?.length > 0 &&
-      application?.qualifications[0]?.completed,
-    "postgraduate1.completed":
-      application?.qualifications?.length > 1 &&
-      application?.qualifications[1]?.completed,
-    "postgraduate2.completed":
-      application?.qualifications?.length > 2 &&
-      application?.qualifications[2]?.completed,
+        "undergraduate.university":
+          application?.qualifications?.[0]?.university ?? null,
+        "postgraduate1.university":
+          application?.qualifications?.[1]?.university ?? null,
+        "postgraduate2.university":
+          application?.qualifications?.[2]?.university ?? null,
 
-    // Marks
-    "undergraduate.marks":
-      application?.qualifications?.length > 0 &&
-      application?.qualifications[0]?.overallMark,
-    "postgraduate1.marks":
-      application?.qualifications?.length > 1 &&
-      application?.qualifications[1]?.overallMark,
-    "postgraduate2.marks":
-      application?.qualifications?.length > 2 &&
-      application?.qualifications[2]?.overallMark,
+        // English Proficiency
+        englishTest: application?.englishProficiency?.testName,
+        englishTestDate: application?.englishProficiency?.testDate,
+        "englishTestResult.overall": application?.englishProficiency?.overall,
+        "englishTestResult.listening":
+          application?.englishProficiency?.listening,
+        "englishTestResult.speaking": application?.englishProficiency?.speaking,
+        "englishTestResult.writing": application?.englishProficiency?.writing,
+        "englishTestResult.reading": application?.englishProficiency?.reading,
 
-    // GPA
-    "undergraduate.gpa":
-      application?.qualifications?.length > 0 &&
-      application?.qualifications[0]?.overallGPA,
-    "postgraduate1.gpa":
-      application?.qualifications?.length > 1 &&
-      application?.qualifications[1]?.overallGPA,
-    "postgraduate2.gpa":
-      application?.qualifications?.length > 2 &&
-      application?.qualifications[2]?.overallGPA,
+        // Commenced and Completed Dates
+        "undergraduate.commenced":
+          application?.qualifications?.[0]?.commenced ?? null,
+        "postgraduate1.commenced":
+          application?.qualifications?.[1]?.commenced ?? null,
+        "postgraduate2.commenced":
+          application?.qualifications?.[2]?.commenced ?? null,
 
-    // English Proficiency
-    englishTest: application?.englishProficiency?.testName,
-    englishTestDate: application?.englishProficiency?.testDate,
-    "englishTestResult.overall": application?.englishProficiency?.overall,
-    "englishTestResult.listening": application?.englishProficiency?.listening,
-    "englishTestResult.speaking": application?.englishProficiency?.speaking,
-    "englishTestResult.writing": application?.englishProficiency?.writing,
-    "englishTestResult.reading": application?.englishProficiency?.reading,
+        "undergraduate.completed":
+          application?.qualifications?.[0]?.completed ?? null,
+        "postgraduate1.completed":
+          application?.qualifications?.[1]?.completed ?? null,
+        "postgraduate2.completed":
+          application?.qualifications?.[2]?.completed ?? null,
 
-    // POST GRADUATION STUDIES
-    // Degree
-    "intendedStudiesOption1.degree":
-      application?.intendedPostGraduateStudies?.length > 0 &&
-      application?.intendedPostGraduateStudies[0]?.degree,
-    "intendedStudiesOption2.degree":
-      application?.intendedPostGraduateStudies?.length > 1 &&
-      application?.intendedPostGraduateStudies[1]?.degree,
-    "intendedStudiesOption3.degree":
-      application?.intendedPostGraduateStudies?.length > 2 &&
-      application?.intendedPostGraduateStudies[2]?.degree,
+        // Marks (Converted to number)
+        "undergraduate.marks": application?.qualifications?.[0]?.overallMark
+          ? parseFloat(application.qualifications[0].overallMark)
+          : null,
+        "postgraduate1.marks": application?.qualifications?.[1]?.overallMark
+          ? parseFloat(application.qualifications[1].overallMark)
+          : null,
+        "postgraduate2.marks": application?.qualifications?.[2]?.overallMark
+          ? parseFloat(application.qualifications[2].overallMark)
+          : null,
 
-    // Discipline
-    "intendedStudiesOption1.discipline":
-      application?.intendedPostGraduateStudies?.length > 0 &&
-      application?.intendedPostGraduateStudies[0]?.discipline,
-    "intendedStudiesOption2.discipline":
-      application?.intendedPostGraduateStudies?.length > 1 &&
-      application?.intendedPostGraduateStudies[1]?.discipline,
-    "intendedStudiesOption3.discipline":
-      application?.intendedPostGraduateStudies?.length > 2 &&
-      application?.intendedPostGraduateStudies[2]?.discipline,
+        // GPA (Converted to number)
+        "undergraduate.gpa": application?.qualifications?.[0]?.overallGPA
+          ? parseFloat(application.qualifications[0].overallGPA)
+          : null,
+        "postgraduate1.gpa": application?.qualifications?.[1]?.overallGPA
+          ? parseFloat(application.qualifications[1].overallGPA)
+          : null,
+        "postgraduate2.gpa": application?.qualifications?.[2]?.overallGPA
+          ? parseFloat(application.qualifications[2].overallGPA)
+          : null,
 
-    // University
-    "intendedStudiesOption1.university":
-      application?.intendedPostGraduateStudies?.length > 0 &&
-      application?.intendedPostGraduateStudies[0]?.university,
-    "intendedStudiesOption2.university":
-      application?.intendedPostGraduateStudies?.length > 1 &&
-      application?.intendedPostGraduateStudies[1]?.university,
-    "intendedStudiesOption3.university":
-      application?.intendedPostGraduateStudies?.length > 2 &&
-      application?.intendedPostGraduateStudies[2]?.university,
+        // POST-GRADUATION STUDIES with number conversions where applicable
+        "intendedStudiesOption1.degree":
+          application?.intendedPostGraduateStudies?.[0]?.degree ?? null,
+        "intendedStudiesOption2.degree":
+          application?.intendedPostGraduateStudies?.[1]?.degree ?? null,
+        "intendedStudiesOption3.degree":
+          application?.intendedPostGraduateStudies?.[2]?.degree ?? null,
 
-    // Planned Start
-    "intendedStudiesOption1.plannedStart":
-      application?.intendedPostGraduateStudies?.length > 0 &&
-      application?.intendedPostGraduateStudies[0]?.plannedStart,
-    "intendedStudiesOption2.plannedStart":
-      application?.intendedPostGraduateStudies?.length > 1 &&
-      application?.intendedPostGraduateStudies[1]?.plannedStart,
-    "intendedStudiesOption3.plannedStart":
-      application?.intendedPostGraduateStudies?.length > 2 &&
-      application?.intendedPostGraduateStudies[2]?.plannedStart,
+        "intendedStudiesOption1.discipline":
+          application?.intendedPostGraduateStudies?.[0]?.discipline ?? null,
+        "intendedStudiesOption2.discipline":
+          application?.intendedPostGraduateStudies?.[1]?.discipline ?? null,
+        "intendedStudiesOption3.discipline":
+          application?.intendedPostGraduateStudies?.[2]?.discipline ?? null,
 
-    // Duration
-    "intendedStudiesOption1.duration":
-      application?.intendedPostGraduateStudies?.length > 0 &&
-      application?.intendedPostGraduateStudies[0]?.duration,
-    "intendedStudiesOption2.duration":
-      application?.intendedPostGraduateStudies?.length > 1 &&
-      application?.intendedPostGraduateStudies[1]?.duration,
-    "intendedStudiesOption3.duration":
-      application?.intendedPostGraduateStudies?.length > 2 &&
-      application?.intendedPostGraduateStudies[2]?.duration,
+        "intendedStudiesOption1.university":
+          application?.intendedPostGraduateStudies?.[0]?.university ?? null,
+        "intendedStudiesOption2.university":
+          application?.intendedPostGraduateStudies?.[1]?.university ?? null,
+        "intendedStudiesOption3.university":
+          application?.intendedPostGraduateStudies?.[2]?.university ?? null,
 
-    // Tuition Fee
-    "intendedStudiesOption1.tuitionFee":
-      application?.intendedPostGraduateStudies?.length > 0 &&
-      application?.intendedPostGraduateStudies[0]?.tuitionFee,
-    "intendedStudiesOption2.tuitionFee":
-      application?.intendedPostGraduateStudies?.length > 1 &&
-      application?.intendedPostGraduateStudies[1]?.tuitionFee,
-    "intendedStudiesOption3.tuitionFee":
-      application?.intendedPostGraduateStudies?.length > 2 &&
-      application?.intendedPostGraduateStudies[2]?.tuitionFee,
+        "intendedStudiesOption1.plannedStart":
+          application?.intendedPostGraduateStudies?.[0]?.plannedStart ?? null,
+        "intendedStudiesOption2.plannedStart":
+          application?.intendedPostGraduateStudies?.[1]?.plannedStart ?? null,
+        "intendedStudiesOption3.plannedStart":
+          application?.intendedPostGraduateStudies?.[2]?.plannedStart ?? null,
 
-    // Already Applied
-    "intendedStudiesOption1.alreadyApplied":
-      application?.intendedPostGraduateStudies?.length > 0 &&
-      application?.intendedPostGraduateStudies[0]?.alreadyApplied,
-    "intendedStudiesOption2.alreadyApplied":
-      application?.intendedPostGraduateStudies?.length > 1 &&
-      application?.intendedPostGraduateStudies[1]?.alreadyApplied,
-    "intendedStudiesOption3.alreadyApplied":
-      application?.intendedPostGraduateStudies?.length > 2 &&
-      application?.intendedPostGraduateStudies[2]?.alreadyApplied,
+        // Duration (Converted to number)
+        "intendedStudiesOption1.duration": application
+          ?.intendedPostGraduateStudies?.[0]?.duration
+          ? parseInt(application.intendedPostGraduateStudies[0].duration)
+          : null,
+        "intendedStudiesOption2.duration": application
+          ?.intendedPostGraduateStudies?.[1]?.duration
+          ? parseInt(application.intendedPostGraduateStudies[1].duration)
+          : null,
+        "intendedStudiesOption3.duration": application
+          ?.intendedPostGraduateStudies?.[2]?.duration
+          ? parseInt(application.intendedPostGraduateStudies[2].duration)
+          : null,
 
-    // Admission Granted
-    "intendedStudiesOption1.admissionGranted":
-      application?.intendedPostGraduateStudies?.length > 0 &&
-      application?.intendedPostGraduateStudies[0]?.admissionGranted,
-    "intendedStudiesOption2.admissionGranted":
-      application?.intendedPostGraduateStudies?.length > 1 &&
-      application?.intendedPostGraduateStudies[1]?.admissionGranted,
-    "intendedStudiesOption3.admissionGranted":
-      application?.intendedPostGraduateStudies?.length > 2 &&
-      application?.intendedPostGraduateStudies[2]?.admissionGranted,
+        // Tuition Fee (Converted to number)
+        "intendedStudiesOption1.tuitionFee": application
+          ?.intendedPostGraduateStudies?.[0]?.tuitionFee
+          ? parseFloat(application.intendedPostGraduateStudies[0].tuitionFee)
+          : null,
+        "intendedStudiesOption2.tuitionFee": application
+          ?.intendedPostGraduateStudies?.[1]?.tuitionFee
+          ? parseFloat(application.intendedPostGraduateStudies[1].tuitionFee)
+          : null,
+        "intendedStudiesOption3.tuitionFee": application
+          ?.intendedPostGraduateStudies?.[2]?.tuitionFee
+          ? parseFloat(application.intendedPostGraduateStudies[2].tuitionFee)
+          : null,
 
-    // Australian Visa Applied
-    "intendedStudiesOption1.australianVisaApplied":
-      application?.intendedPostGraduateStudies?.length > 0 &&
-      application?.intendedPostGraduateStudies[0]?.australianVisaApplied,
-    "intendedStudiesOption2.australianVisaApplied":
-      application?.intendedPostGraduateStudies?.length > 1 &&
-      application?.intendedPostGraduateStudies[1]?.australianVisaApplied,
-    "intendedStudiesOption3.australianVisaApplied":
-      application?.intendedPostGraduateStudies?.length > 2 &&
-      application?.intendedPostGraduateStudies[2]?.australianVisaApplied,
+        // Boolean values as they are
+        "intendedStudiesOption1.alreadyApplied":
+          application?.intendedPostGraduateStudies?.[0]?.alreadyApplied ?? null,
+        "intendedStudiesOption2.alreadyApplied":
+          application?.intendedPostGraduateStudies?.[1]?.alreadyApplied ?? null,
+        "intendedStudiesOption3.alreadyApplied":
+          application?.intendedPostGraduateStudies?.[2]?.alreadyApplied ?? null,
 
-    // Australian Visa Granted
-    "intendedStudiesOption1.australianVisaGranted":
-      application?.intendedPostGraduateStudies?.length > 0 &&
-      application?.intendedPostGraduateStudies[0]?.australianVisaGranted,
-    "intendedStudiesOption2.australianVisaGranted":
-      application?.intendedPostGraduateStudies?.length > 1 &&
-      application?.intendedPostGraduateStudies[1]?.australianVisaGranted,
-    "intendedStudiesOption3.australianVisaGranted":
-      application?.intendedPostGraduateStudies?.length > 2 &&
-      application?.intendedPostGraduateStudies[2]?.australianVisaGranted,
-  };
+        "intendedStudiesOption1.admissionGranted":
+          application?.intendedPostGraduateStudies?.[0]?.admissionGranted ??
+          null,
+        "intendedStudiesOption2.admissionGranted":
+          application?.intendedPostGraduateStudies?.[1]?.admissionGranted ??
+          null,
+        "intendedStudiesOption3.admissionGranted":
+          application?.intendedPostGraduateStudies?.[2]?.admissionGranted ??
+          null,
 
-  const onSubmit = (data) => {
-    console.log(data);
+        "intendedStudiesOption1.australianVisaApplied":
+          application?.intendedPostGraduateStudies?.[0]
+            ?.australianVisaApplied ?? null,
+        "intendedStudiesOption2.australianVisaApplied":
+          application?.intendedPostGraduateStudies?.[1]
+            ?.australianVisaApplied ?? null,
+        "intendedStudiesOption3.australianVisaApplied":
+          application?.intendedPostGraduateStudies?.[2]
+            ?.australianVisaApplied ?? null,
+
+        "intendedStudiesOption1.australianVisaGranted":
+          application?.intendedPostGraduateStudies?.[0]
+            ?.australianVisaGranted ?? null,
+        "intendedStudiesOption2.australianVisaGranted":
+          application?.intendedPostGraduateStudies?.[1]
+            ?.australianVisaGranted ?? null,
+        "intendedStudiesOption3.australianVisaGranted":
+          application?.intendedPostGraduateStudies?.[2]
+            ?.australianVisaGranted ?? null,
+      });
+    }
+  }, [application]);
+
+  const onSubmit = async (data) => {
+    const payload = {
+      dateOfBirth: data?.dateOfBirth,
+      homeAddress: data?.homeAddress,
+      citizenship: data?.citizenship,
+      qualifications: [
+        {
+          degreeLevel: "undergraduate",
+          ...data?.undergraduate,
+          overallMark: data.undergraduate?.marks,
+          overallGPA: data.undergraduate?.gpa,
+        },
+        {
+          degreeLevel: "postgraduate1",
+          ...data?.postgraduate1,
+          overallMark: data.postgraduate1?.marks,
+          overallGPA: data.postgraduate1?.gpa,
+        },
+        {
+          degreeLevel: "postgraduate2",
+          ...data?.postgraduate2,
+          overallMark: data.postgraduate2?.marks,
+          overallGPA: data.postgraduate2?.gpa,
+        },
+      ],
+      englishProficiency: {
+        testName: data?.englishTest,
+        ...data?.englishTestResult,
+        testDate: data?.englishTestDate,
+      },
+      intendedPostGraduateStudies: [
+        {
+          ...data?.intendedStudiesOption1,
+        },
+        {
+          ...data?.intendedStudiesOption2,
+        },
+        {
+          ...data?.intendedStudiesOption3,
+        },
+      ],
+    };
+
+    try {
+      await updateApplication({
+        id: application?._id,
+        data: payload,
+      });
+
+      SuccessToast("Application updated successfully");
+    } catch (error) {
+      ErrorToast(
+        error?.message || error?.data?.message || "Something went wrong!",
+      );
+    }
   };
 
   return (
@@ -316,9 +355,9 @@ export default function UpdateApplicationPageContainer() {
               <section className="text-primary-black">
                 <FormWrapper
                   onSubmit={onSubmit}
-                  resolver={zodResolver(
-                    applyApplicationSchema.applyApplicationFormSchema,
-                  )}
+                  // resolver={zodResolver(
+                  //   applyApplicationSchema.applyApplicationFormSchema,
+                  // )}
                   defaultValues={defaultValues}
                 >
                   <PersonalInfoForm data={application} />
@@ -326,9 +365,13 @@ export default function UpdateApplicationPageContainer() {
                   <EnglishProficiencyForm data={application} />
                   <IntendedStudiesForm data={application} />
 
-                  <button type="submit" className="primary-button mt-10 h-12">
+                  <Button
+                    isLoading={isUpdating}
+                    htmlType="submit"
+                    className="primary-button mt-10 h-12"
+                  >
                     Update <EditFilled className="ml-1" />
-                  </button>
+                  </Button>
                 </FormWrapper>
               </section>
             </div>
