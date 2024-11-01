@@ -15,6 +15,7 @@ import { useApplyForApplicationMutation } from "@/redux/features/application/app
 import { ErrorToast, SuccessToast } from "@/utils/custom-toast";
 import TextSkeleton from "@/components/TextSkeleton/TextSkeleton";
 import { Tag } from "antd";
+import { Check } from "lucide-react";
 
 export default function ApplyApplicationPageContainer() {
   const { user } = useSelector((state) => state.auth);
@@ -121,8 +122,11 @@ export default function ApplyApplicationPageContainer() {
               {isUserLoading ? (
                 <TextSkeleton />
               ) : userData?.isVerified ? (
-                <Tag color="green" className="text-base">
-                  Verified
+                <Tag
+                  color="green"
+                  className="flex items-center gap-x-1 text-base"
+                >
+                  Verified <Check size={15} />
                 </Tag>
               ) : (
                 <Tag color="error" className="text-base">

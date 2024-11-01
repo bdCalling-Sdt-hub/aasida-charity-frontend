@@ -9,14 +9,10 @@ export const metadata = {
 export default function HomePage() {
   return (
     <section>
-      <div className="mx-auto leading-relaxed">
+      <div className="mx-auto text-lg leading-relaxed">
         <h1 className="mb-6 text-xl font-bold text-gray-800 lg:text-3xl 2xl:text-4xl">
           INTRODUCTION
         </h1>
-        <p className="mb-4 text-lg font-semibold text-gray-900">
-          Opportunity for Pakistani Students to Obtain Financial Assistance for
-          Pursuing Post-Graduate Studies in Australia
-        </p>
 
         <div>
           <p className="mb-4">
@@ -64,7 +60,7 @@ export default function HomePage() {
             Many people may find this too good to be true and would have quite a
             few questions, some of which we try to answer as follows:
           </p>
-          <div className="mb-4 rounded-r-2xl border-l-4 border-red-500 bg-gray-100 p-4">
+          <div className="mb-4 rounded-r-2xl border-l-4 border-yellow-500 bg-gray-100 p-4">
             <h2 className="mb-2 text-xl font-semibold">Is there a catch?</h2>
             <p className="mb-2">
               Yes, there is one big catch! You must be a genuine student, coming
@@ -254,18 +250,18 @@ export default function HomePage() {
           </p>
 
           <ol>
-            <li className="list-inside list-decimal hover:text-neutral-700">
+            <li className="list-inside list-decimal hover:text-[#29d]">
               <Link href="/privacy-policy">Review our Privacy Policy</Link>
             </li>
-            <li className="list-inside list-decimal hover:text-neutral-700">
+            <li className="list-inside list-decimal hover:text-[#29d]">
               <Link href="/register">Register yourself on our website</Link>
             </li>
-            <li className="list-inside list-decimal hover:text-neutral-700">
+            <li className="list-inside list-decimal hover:text-[#29d]">
               <Link href="/draft-agreement">
                 Review the proposed draft Agreement for Financial Assistance
               </Link>
             </li>
-            <li className="list-inside list-decimal hover:text-neutral-700">
+            <li className="list-inside list-decimal hover:text-[#29d]">
               <Link href="/apply-application">
                 Apply for Financial Assistance
               </Link>

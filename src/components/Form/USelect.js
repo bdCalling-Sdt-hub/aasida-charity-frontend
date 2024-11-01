@@ -18,7 +18,10 @@ const USelect = ({
   return (
     <Controller
       name={name}
-      render={({ field: { onChange }, fieldState: { error } }) => (
+      render={({
+        field: { onChange, value: fieldValue },
+        fieldState: { error },
+      }) => (
         <Form.Item
           label={
             Object.keys(labelStyles)?.length > 0 ? (
@@ -34,7 +37,7 @@ const USelect = ({
             mode={mode}
             filterOption={filterOption}
             showSearch={showSearch}
-            defaultValue={defaultValue}
+            value={fieldValue || defaultValue}
             size={size}
             options={options}
             onChange={onChange}

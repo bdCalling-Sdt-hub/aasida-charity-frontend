@@ -6,180 +6,182 @@ export const metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div>
-      <h2 className="text-4xl font-bold text-primary-black">Privacy Policy</h2>
-      <p className="mt-4 text-secondary-2">
-        Welcome to [Your Company Name]. Protecting your personal information is
-        a top priority for us. This Privacy Policy explains how we collect, use,
-        disclose, and safeguard your information when you use our services,
-        including our website, mobile app, and any other service we provide
-        (collectively, the "Services"). By accessing or using our Services, you
-        agree to the terms of this Privacy Policy. Please read it carefully.
-      </p>
+    <div className="mx-auto text-lg leading-relaxed">
+      <h1 className="mb-4 text-3xl font-bold">PRIVACY POLICY</h1>
 
-      <h1 className="mb-3 mt-10 text-4xl font-bold text-primary-black">
-        1. What Data Do We Process?
-      </h1>
-      <p>
-        We collect and process several types of personal data to deliver the
-        Services to you, including:
-      </p>
-      <ul className="ml-5 mt-3 list-disc">
-        <li>
-          <strong>Personal Identification Information:</strong> This includes
-          your name, email address, phone number, mailing address, and other
-          contact details.
-        </li>
-        <li>
-          <strong>Financial Information:</strong> Payment details, billing
-          address, and transaction history necessary to process payments for the
-          Services.
-        </li>
-        <li>
-          <strong>Technical Data:</strong> Your IP address, browser type,
-          operating system, and other technical information automatically
-          collected when you interact with our website.
-        </li>
-        <li>
-          <strong>User Content:</strong> Any data, comments, or uploads you
-          provide directly to us while using the Services.
-        </li>
-        <li>
-          <strong>Cookies and Tracking Information:</strong> Information
-          gathered from cookies and other tracking technologies to analyze usage
-          patterns and improve our Services.
-        </li>
-      </ul>
+      <ol className="mt-10 list-inside list-decimal space-y-6">
+        <li className="text-2xl font-semibold">Respecting Privacy</li>
+        <p className="mt-2 px-7">
+          We recognize privacy as a fundamental right. This document sets forth
+          our current policy in this regard.
+        </p>
 
-      <h1 className="mb-3 mt-10 text-4xl font-bold text-primary-black">
-        2. How Do We Use Your Data?
-      </h1>
-      <p>We use your personal data for various purposes, including:</p>
-      <ul className="ml-5 mt-3 list-disc">
-        <li>To provide, operate, and maintain our Services.</li>
-        <li>
-          To process your transactions and deliver the requested services.
-        </li>
-        <li>
-          To communicate with you regarding your account, Services, and updates.
-        </li>
-        <li>
-          To analyze trends and usage, helping us improve the user experience
-          and enhance the functionality of our Services.
-        </li>
-        <li>To comply with legal and regulatory obligations.</li>
-        <li>
-          To personalize and optimize our services based on your preferences.
-        </li>
-      </ul>
+        <li className="text-2xl font-semibold">Sources of Personal Data</li>
+        <p className="mt-2 px-7">
+          We respect people, including their right to privacy.
+        </p>
+        <p className="mt-2 px-7">
+          As part of a philanthropic initiative, we intend to offer some
+          financial assistance to selected Pakistani student(s) to pursue
+          post-graduate education in Australia. Our website provides a platform
+          for potential candidates to obtain relevant information and to become
+          an applicant for possible selection to receive the financial
+          assistance being offered. This involves collection and processing of
+          personal data of the website visitors and applicants. Additional
+          personal data of the student(s) selected to receive the financial
+          assistance may also be collected outside of our website by us or our
+          affiliates through interviews and/or other forms of verbal/written
+          communications.
+        </p>
+        <p className="mt-2 px-7">
+          Personal data could also be collected through social media; from
+          solicited and unsolicited communications; responses to promotional and
+          other materials, among others. If we have your personal data, more
+          likely than not, it has been shared with us by you.
+        </p>
+        <p className="mt-2 px-7">
+          Additional sources of personal data collection may include the data
+          collection technologies incorporated in our website, telecommunication
+          systems, digital advertising, social media, etc. In addition to
+          personal data that a user of our website voluntarily furnishes, these
+          electronic systems may also collect other personal data without the
+          knowledge of the user, including user’s preferences, frequency of
+          access, IP addresses, type of browser, communication device or
+          operating systems used, and geographic location, etc.
+        </p>
+        <p className="mt-2 px-7">
+          Separately, personal data may also be collected and processed of the
+          people assisting us to facilitate the implementation of our financial
+          assistance scheme for Pakistani students to pursue post-graduate
+          studies in Australia.
+        </p>
 
-      <h1 className="mb-3 mt-10 text-4xl font-bold text-primary-black">
-        3. How Do We Share Your Data?
-      </h1>
-      <p>
-        We only share your personal data with third parties under the following
-        circumstances:
-      </p>
-      <ul className="ml-5 mt-3 list-disc">
-        <li>
-          <strong>Service Providers:</strong> We may share your data with
-          third-party vendors and contractors who provide services on our
-          behalf, such as payment processors, hosting providers, and analytics
-          services.
-        </li>
-        <li>
-          <strong>Legal Requirements:</strong> We may disclose your information
-          when required by law or in response to valid requests by public
-          authorities, including to comply with a subpoena or legal process.
-        </li>
-        <li>
-          <strong>Business Transfers:</strong> In the event of a merger, sale,
-          or acquisition, your information may be transferred as part of the
-          transaction, subject to confidentiality agreements.
-        </li>
-      </ul>
+        <li className="text-2xl font-semibold">Processing of Personal Data</li>
+        <p className="mt-2 px-7">
+          We collect, store, and process personal data for the purpose of
+          implementing our financial assistance scheme, while balancing this
+          purpose against the data subject’s interests and fundamental rights.
+          To achieve this purpose, we may use various contact management,
+          analytics, and processing software and other tools and techniques.
+        </p>
+        <p className="mt-2 px-7">
+          We may share personal data with other entities that provide services
+          to us, including companies that provide website development &
+          maintenance, web analytics, advertising, email distribution, and other
+          services. Some of these entities may be located in jurisdictions
+          outside of Australia and Pakistan and possibly with a lower level of
+          privacy or data protection.
+        </p>
+        <p className="mt-2 px-7">
+          We may also process personal data where it is necessary for entering
+          into or performing under a contract. Additionally, in certain
+          circumstances, we may process personal data based on the consent of
+          the data subject for specific purposes.
+        </p>
+        <p className="mt-2 px-7">
+          We may also use or disclose personal data if the law requires us to do
+          so or if we reasonably believe that use or disclosure is necessary to
+          protect our rights and/or to comply with judicial or regulatory
+          proceedings, a court order or other legal process. We do not otherwise
+          disclose or sell any personal data that we collect or which comes into
+          our possession without the consent of the data subject.
+        </p>
 
-      <h1 className="mb-3 mt-10 text-4xl font-bold text-primary-black">
-        4. What Are Your Rights?
-      </h1>
-      <p>You have the following rights regarding your personal data:</p>
-      <ul className="ml-5 mt-3 list-disc">
-        <li>
-          <strong>Access and Portability:</strong> You may request access to the
-          data we hold about you and receive it in a structured, commonly used
-          format.
+        <li className="text-2xl font-semibold">
+          Right to Object and Unsubscribe
         </li>
-        <li>
-          <strong>Rectification:</strong> You have the right to request
-          corrections to any inaccurate or incomplete data we hold about you.
-        </li>
-        <li>
-          <strong>Erasure:</strong> You may request that we delete your personal
-          data, subject to legal or contractual obligations that may require us
-          to retain certain information.
-        </li>
-        <li>
-          <strong>Restriction of Processing:</strong> You may request that we
-          restrict the processing of your data under certain circumstances.
-        </li>
-        <li>
-          <strong>Objection:</strong> You may object to the processing of your
-          personal data for direct marketing purposes or other uses where we
-          rely on legitimate interests.
-        </li>
-      </ul>
+        <p className="mt-2 px-7">
+          You have the right to object to your personal data being used for
+          direct marketing by us. You may opt out by writing to:{" "}
+          <a
+            href="mailto:info@helpforpakstudents.com"
+            className="text-blue-600 underline"
+          >
+            info@helpforpakstudents.com
+          </a>
+        </p>
+        <p className="mt-2 px-7">
+          You also have the right to ask us to unsubscribe you from any or all
+          of our electronic communications.
+        </p>
+        <p className="mt-2 px-7">
+          Also, by continuing to register via our website, you are willingly
+          giving us permission to contact you or communicate with you via all
+          the contacts given by you using WhatsApp, email, SMS, phone, and other
+          modes of communication.
+        </p>
 
-      <h1 className="mb-3 mt-10 text-4xl font-bold text-primary-black">
-        5. How Do We Protect Your Data?
-      </h1>
-      <p>
-        We implement appropriate technical and organizational measures to
-        safeguard your personal data, including:
-      </p>
-      <ul className="ml-5 mt-3 list-disc">
-        <li>Encryption of sensitive data.</li>
-        <li>
-          Access controls to prevent unauthorized access to your information.
+        <li className="text-2xl font-semibold">Third-Party Activities</li>
+        <p className="mt-2 px-7">
+          Unaffiliated third parties, such as Google, Facebook, Twitter, etc.,
+          are providers of avenues, content, functionality, and services for our
+          digital platform(s). We do not control what and how these and other
+          third parties collect personal data or how they use it. However, we
+          know that in addition to using sophisticated technologies such as
+          cookies and web beacons on digital platforms, including websites such
+          as ours, third parties routinely employ new and innovative tools,
+          techniques, and practices to collect, receive, process, buy, and sell
+          personal information over extended durations, build sophisticated user
+          profiles, and commercially exploit it. We do not control and are not
+          responsible for the privacy and business practices of these third
+          parties. Note here that certain of their activities can potentially be
+          managed by users themselves, as for instance, through internet browser
+          and handheld app controls.
+        </p>
+
+        <li className="text-2xl font-semibold">Children’s Information</li>
+        <p className="mt-2 px-7">
+          We do not knowingly collect or store personal data of children unless
+          permitted by law or provided to us under a contract by the legal
+          guardian(s) of the child. If we learn that we have collected
+          personally identifiable information of a child without lawful
+          authorization, we will delete that information from our database.
+        </p>
+
+        <li className="text-2xl font-semibold">Protecting Personal Data</li>
+        <p className="mt-2 px-7">
+          We use physical, technical, and administrative measures to protect
+          personal data against loss, theft, and unauthorized use, disclosure,
+          or modification. We strive to protect the information we maintain;
+          however, we cannot ensure or warrant the security of any information
+          that is transmitted to or held by us because data transmission and
+          storage are neither error-free nor completely secure.
+        </p>
+
+        <li className="text-2xl font-semibold">Data Retention</li>
+        <p className="mt-2 px-7">
+          We retain personal data for as long as necessary to fulfill the
+          purposes for which it was collected and processed, including for the
+          purposes of satisfying any contractual, legal, regulatory, accounting,
+          or reporting obligations.
+        </p>
+
+        <li className="text-2xl font-semibold">
+          Changes to this Privacy Policy
         </li>
-        <li>Regular security audits and assessments of our systems.</li>
-      </ul>
+        <p className="mt-2 px-7">
+          We may update this Privacy Policy at any time. The version currently
+          available on our website is the most updated version and contains the
+          date it was last updated.
+        </p>
 
-      <h1 className="mb-3 mt-10 text-4xl font-bold text-primary-black">
-        6. Retention of Data
-      </h1>
-      <p>
-        We retain your personal data only as long as necessary to fulfill the
-        purposes for which it was collected or as required by law. Once the
-        retention period expires, we securely delete or anonymize your data.
-      </p>
+        <li className="text-2xl font-semibold">Further Information</li>
+        <p className="mt-2 px-7">
+          Please feel free to direct any questions concerning our Privacy Policy
+          to:
+          <a
+            href="mailto:info@helpforpakstudents.com"
+            className="text-blue-600 underline"
+          >
+            {" "}
+            info@helpforpakstudents.com
+          </a>
+        </p>
+      </ol>
 
-      <h1 className="mb-3 mt-10 text-4xl font-bold text-primary-black">
-        7. Cookies and Tracking Technologies
-      </h1>
-      <p>
-        Our Services use cookies and similar tracking technologies to enhance
-        user experience and monitor site usage. You can control cookie
-        preferences through your browser settings, but disabling them may affect
-        the functionality of our Services.
-      </p>
-
-      <h1 className="mb-3 mt-10 text-4xl font-bold text-primary-black">
-        8. Changes to This Privacy Policy
-      </h1>
-      <p>
-        We may update this Privacy Policy from time to time to reflect changes
-        in our practices or applicable laws. Any updates will be posted on our
-        website, and we encourage you to review this policy periodically.
-      </p>
-
-      <h1 className="mb-3 mt-10 text-4xl font-bold text-primary-black">
-        9. Contact Us
-      </h1>
-      <p>
-        If you have any questions or concerns about this Privacy Policy or how
-        we handle your personal data, please contact us at [Contact
-        Information].
-      </p>
+      <footer className="mt-4 text-sm text-gray-500">
+        Updated: 1st September 2024
+      </footer>
     </div>
   );
 }

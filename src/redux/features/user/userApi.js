@@ -11,16 +11,7 @@ const userApi = baseApi.injectEndpoints({
 
       providesTags: [tagTypes.user],
     }),
-
-    getMyApplications: builder.query({
-      query: () => ({
-        url: "/applications/my-applications",
-        method: "GET",
-      }),
-
-      providesTags: [tagTypes.applications],
-    }),
   }),
 });
 
-export const { useGetSingleUserQuery, useGetMyApplicationsQuery } = userApi;
+export const { useGetSingleUserQuery } = userApi;

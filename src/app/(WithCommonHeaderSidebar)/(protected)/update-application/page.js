@@ -1,3 +1,4 @@
+import UpdateApplicationContainer from "./[id]/_components/UpdateApplicationContainer";
 import UpdateApplicationPageContainer from "./_components/UpdateApplicationPageContainer";
 
 export const metadata = {

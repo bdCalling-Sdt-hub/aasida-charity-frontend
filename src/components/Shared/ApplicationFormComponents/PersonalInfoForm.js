@@ -9,7 +9,7 @@ const LABEL_STYLES = {
   fontWeight: "400",
 };
 
-const CITIZENSHIP_OPTIONS = ["India", "Pakistan", "Bangladesh", "Nepal"];
+const CITIZENSHIP_OPTIONS = ["Pakistan"];
 
 export default function PersonalInfoForm({ data }) {
   return (

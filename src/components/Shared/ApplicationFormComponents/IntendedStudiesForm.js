@@ -4,7 +4,7 @@ import USelect from "@/components/Form/USelect";
 
 // Common style
 const rowWith4Col =
-  "grid grid-cols-4 lg:mx-auto lg:w-[90%] gap-x-10 w-max px-5 lg:px-0";
+  "grid grid-cols-4 lg:mx-auto lg:w-[95%] gap-x-10 w-max px-5 lg:px-0";
 
 export default function IntendedStudiesForm({ data }) {
   return (
@@ -114,7 +114,9 @@ export default function IntendedStudiesForm({ data }) {
 
           <USelect
             name="intendedStudiesOption1.alreadyApplied"
-            defaultValue={data?.intendedPostGraduateStudies[0]?.alreadyApplied}
+            defaultValue={
+              data?.intendedPostGraduateStudies?.[0]?.alreadyApplied ?? null
+            }
             options={[
               { value: true, label: "Yes" },
               { value: false, label: "No" },
@@ -124,7 +126,9 @@ export default function IntendedStudiesForm({ data }) {
 
           <USelect
             name="intendedStudiesOption2.alreadyApplied"
-            defaultValue={data?.intendedPostGraduateStudies[1]?.alreadyApplied}
+            defaultValue={
+              data?.intendedPostGraduateStudies?.[1]?.alreadyApplied ?? null
+            }
             options={[
               { value: true, label: "Yes" },
               { value: false, label: "No" },
@@ -134,7 +138,9 @@ export default function IntendedStudiesForm({ data }) {
 
           <USelect
             name="intendedStudiesOption3.alreadyApplied"
-            defaultValue={data?.intendedPostGraduateStudies[2]?.alreadyApplied}
+            defaultValue={
+              data?.intendedPostGraduateStudies?.[2]?.alreadyApplied ?? null
+            }
             options={[
               { value: true, label: "Yes" },
               { value: false, label: "No" },
@@ -150,7 +156,7 @@ export default function IntendedStudiesForm({ data }) {
           <USelect
             name="intendedStudiesOption1.admissionGranted"
             defaultValue={
-              data?.intendedPostGraduateStudies[0]?.admissionGranted
+              data?.intendedPostGraduateStudies?.[0]?.admissionGranted ?? null
             }
             options={[
               { value: true, label: "Yes" },
@@ -162,7 +168,7 @@ export default function IntendedStudiesForm({ data }) {
           <USelect
             name="intendedStudiesOption2.admissionGranted"
             defaultValue={
-              data?.intendedPostGraduateStudies[1]?.admissionGranted
+              data?.intendedPostGraduateStudies?.[1]?.admissionGranted ?? null
             }
             options={[
               { value: true, label: "Yes" },
@@ -174,7 +180,7 @@ export default function IntendedStudiesForm({ data }) {
           <USelect
             name="intendedStudiesOption3.admissionGranted"
             defaultValue={
-              data?.intendedPostGraduateStudies[2]?.admissionGranted
+              data?.intendedPostGraduateStudies?.[2]?.admissionGranted ?? null
             }
             options={[
               { value: true, label: "Yes" },
@@ -191,7 +197,8 @@ export default function IntendedStudiesForm({ data }) {
           <USelect
             name="intendedStudiesOption1.australianVisaApplied"
             defaultValue={
-              data?.intendedPostGraduateStudies[0]?.australianVisaApplied
+              data?.intendedPostGraduateStudies?.[0]?.australianVisaApplied ??
+              null
             }
             options={[
               { value: true, label: "Yes" },
@@ -203,7 +210,8 @@ export default function IntendedStudiesForm({ data }) {
           <USelect
             name="intendedStudiesOption2.australianVisaApplied"
             defaultValue={
-              data?.intendedPostGraduateStudies[1]?.australianVisaApplied
+              data?.intendedPostGraduateStudies?.[1]?.australianVisaApplied ??
+              null
             }
             options={[
               { value: true, label: "Yes" },
@@ -215,7 +223,8 @@ export default function IntendedStudiesForm({ data }) {
           <USelect
             name="intendedStudiesOption3.australianVisaApplied"
             defaultValue={
-              data?.intendedPostGraduateStudies[2]?.australianVisaApplied
+              data?.intendedPostGraduateStudies?.[2]?.australianVisaApplied ??
+              null
             }
             options={[
               { value: true, label: "Yes" },
@@ -232,7 +241,8 @@ export default function IntendedStudiesForm({ data }) {
           <USelect
             name="intendedStudiesOption1.australianVisaGranted"
             defaultValue={
-              data?.intendedPostGraduateStudies[0]?.australianVisaGranted
+              data?.intendedPostGraduateStudies?.[0]?.australianVisaGranted ??
+              null
             }
             options={[
               { value: true, label: "Yes" },
@@ -244,7 +254,8 @@ export default function IntendedStudiesForm({ data }) {
           <USelect
             name="intendedStudiesOption2.australianVisaGranted"
             defaultValue={
-              data?.intendedPostGraduateStudies[1]?.australianVisaGranted
+              data?.intendedPostGraduateStudies?.[1]?.australianVisaGranted ??
+              null
             }
             options={[
               { value: true, label: "Yes" },
@@ -256,7 +267,8 @@ export default function IntendedStudiesForm({ data }) {
           <USelect
             name="intendedStudiesOption3.australianVisaGranted"
             defaultValue={
-              data?.intendedPostGraduateStudies[2]?.australianVisaGranted
+              data?.intendedPostGraduateStudies?.[2]?.australianVisaGranted ??
+              null
             }
             options={[
               { value: true, label: "Yes" },

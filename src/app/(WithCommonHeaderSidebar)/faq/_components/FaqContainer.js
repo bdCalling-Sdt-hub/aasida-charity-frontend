@@ -5,93 +5,6 @@ import { Collapse } from "antd";
 import React from "react";
 
 export default function FaqContainer() {
-  // const getFaqItems = (itemStyle) => [
-  //   {
-  //     key: "1",
-  //     label: (
-  //       <label className="text-lg font-medium">
-  //         How do I apply to a university through this platform?
-  //       </label>
-  //     ),
-  //     children: (
-  //       <p>
-  //         To apply to a university, simply fill in the required details in the
-  //         \"Degree\" section, including your chosen program, university name,
-  //         planned start date, and any other relevant information. You can also
-  //         track your application status and update your details at any time.
-  //       </p>
-  //     ),
-  //     style: itemStyle,
-  //   },
-  //   {
-  //     key: "2",
-  //     label: (
-  //       <label className="text-lg font-medium">
-  //         What information do I need to provide when applying?
-  //       </label>
-  //     ),
-  //     children: (
-  //       <p>
-  //         You will need to provide details about your degree (e.g., field of
-  //         study, discipline, university), your start date, and your planned
-  //         duration. Additionally, we will ask about your university tuition fees
-  //         and visa status if applicable.
-  //       </p>
-  //     ),
-  //     style: itemStyle,
-  //   },
-  //   {
-  //     key: "3",
-  //     label: (
-  //       <label className="text-lg font-medium">
-  //         What is the format required for the date fields (Planned Start and
-  //         Duration)?
-  //       </label>
-  //     ),
-  //     children: (
-  //       <p>
-  //         The planned start date and duration should be entered in the format of
-  //         MM/YYYY. However, if you enter them differently, don't worry—our
-  //         system will help guide you through formatting corrections.
-  //       </p>
-  //     ),
-  //     style: itemStyle,
-  //   },
-  //   {
-  //     key: "4",
-  //     label: (
-  //       <label className="text-lg font-medium">
-  //         Can I apply to more than one university at the same time?
-  //       </label>
-  //     ),
-  //     children: (
-  //       <p>
-  //         Yes, you can apply to multiple universities at once. Our platform
-  //         allows you to fill out separate forms for each university under
-  //         different options (Option 1, Option 2, and Option 3). Just make sure
-  //         to provide the required information for each option.
-  //       </p>
-  //     ),
-  //     style: itemStyle,
-  //   },
-  //   {
-  //     key: "5",
-  //     label: (
-  //       <label className="text-lg font-medium">
-  //         What if my application to a university is not granted?
-  //       </label>
-  //     ),
-  //     children: (
-  //       <p>
-  //         If your application is not granted, you can update your admission
-  //         status in the form and explore other universities or options. Our
-  //         platform allows you to track your status and update it as needed.
-  //       </p>
-  //     ),
-  //     style: itemStyle,
-  //   },
-  // ];
-
   const getFaqItems = (itemStyle) => [
     {
       key: "1",
@@ -102,7 +15,7 @@ export default function FaqContainer() {
         </label>
       ),
       children: (
-        <p>
+        <p className="text-lg">
           Yes, there are certain obligations in return for receiving the
           financial assistance, as follows:
           <br />
@@ -113,7 +26,7 @@ export default function FaqContainer() {
           enter into a formal legally binding “Agreement for Financial
           Assistance” with us. This agreement will require that in return for
           our financial assistance, you must:
-          <ul className="ml-6 list-disc">
+          <ol className="my-4 ml-6 list-inside list-decimal">
             <li>
               Complete your chosen post-graduate degree in Australia within its
               normal duration on a full-time basis.
@@ -123,7 +36,7 @@ export default function FaqContainer() {
               than to undertake your chosen degree.
             </li>
             <li>Return to Pakistan after completing your chosen degree.</li>
-          </ul>
+          </ol>
           You will also have other obligations to keep us informed of the
           progress and results achieved throughout your course.
         </p>
@@ -138,13 +51,13 @@ export default function FaqContainer() {
         </label>
       ),
       children: (
-        <p>
+        <p className="text-lg">
           The Agreement for Financial Assistance is a legally binding agreement,
           governed under the jurisdiction of the Australian state of Victoria.
           If you breach your obligations and seek to extend your stay in
           Australia for any reason other than to undertake and complete your
           chosen post-graduate degree, the Agreement will allow us to seek legal
-          remedies. <br />
+          remedies. <br /> <br />
           Failure to fulfill your commitments will require you to repay the
           total amount of financial assistance received PLUS an equivalent
           amount as a penalty (i.e., 200% of the total financial assistance
@@ -164,7 +77,7 @@ export default function FaqContainer() {
         </label>
       ),
       children: (
-        <p>
+        <p className="text-lg">
           Yes, a draft version of the proposed “Agreement for Financial
           Assistance” is available on our website. Before applying for the
           financial assistance, you must review this draft in detail and seek
@@ -184,7 +97,7 @@ export default function FaqContainer() {
         </label>
       ),
       children: (
-        <p>
+        <p className="text-lg">
           Undergraduate education in a wide range of study areas is available at
           many Pakistani universities. Therefore, it is more appropriate for
           Pakistani students to complete their undergraduate studies in
@@ -202,7 +115,7 @@ export default function FaqContainer() {
         </label>
       ),
       children: (
-        <p>
+        <p className="text-lg">
           No, the financial assistance is only available for master's or
           doctoral degrees and not for any post-graduate certificates or
           diplomas.
@@ -214,12 +127,13 @@ export default function FaqContainer() {
       key: "6",
       label: (
         <label className="text-lg font-medium">
-          Why is the financial assistance offered for higher studies only in
-          Australia and not in other countries?
+          Why the financial assistance is being offered for higher studies only
+          in Australia and not in any other country (such as Canada, UK, USA,
+          etc.)?
         </label>
       ),
       children: (
-        <p>
+        <p className="text-lg">
           Simply because we reside in Australia, making it feasible for us to
           pursue legal recourse within Australia for any contractual breach by
           the recipient of the financial assistance.
@@ -236,7 +150,7 @@ export default function FaqContainer() {
         </label>
       ),
       children: (
-        <p>
+        <p className="text-lg">
           No, you may choose any recognized university within Australia for your
           post-graduate studies. However, financial assistance is not available
           for other education providers, such as colleges or institutes.
@@ -253,7 +167,7 @@ export default function FaqContainer() {
         </label>
       ),
       children: (
-        <p>
+        <p className="text-lg">
           You may apply for financial assistance either before or after securing
           admission in a post-graduate course at a recognized Australian
           university, but before arriving in Australia to start your course. You
@@ -271,7 +185,7 @@ export default function FaqContainer() {
         </label>
       ),
       children: (
-        <p>
+        <p className="text-lg">
           The assistance is capped and based on the post-graduate degree
           pursued, its duration, and the university’s yearly tuition fee. We
           expect the assistance to be around AU$ 40,000 per year, assuming a
@@ -289,7 +203,7 @@ export default function FaqContainer() {
         </label>
       ),
       children: (
-        <p>
+        <p className="text-lg">
           No, the assistance is applied directly to university tuition fees,
           paid at the start of each semester, and is divided across the course
           duration based on the number of semesters.
@@ -301,11 +215,11 @@ export default function FaqContainer() {
       key: "11",
       label: (
         <label className="text-lg font-medium">
-          Would we provide any other help, such as for housing or living costs?
+          Would we provide any other help - such as for housing or living costs?
         </label>
       ),
       children: (
-        <p>
+        <p className="text-lg">
           No, the financial assistance is strictly limited to the capped amount
           offered and is paid directly to the university as part of the tuition
           fee.
@@ -321,7 +235,7 @@ export default function FaqContainer() {
         </label>
       ),
       children: (
-        <p>
+        <p className="text-lg">
           Nothing at all—as long as the commitments and obligations under the
           proposed Agreement for Financial Assistance are met.
         </p>
@@ -336,7 +250,7 @@ export default function FaqContainer() {
         </label>
       ),
       children: (
-        <p>
+        <p className="text-lg">
           Not at all. Admission is the student’s responsibility. If needed, we
           can issue a letter confirming the availability of financial
           assistance, which may aid in the admission decision.
@@ -352,7 +266,7 @@ export default function FaqContainer() {
         </label>
       ),
       children: (
-        <p>
+        <p className="text-lg">
           Not at all. The visa process is the student’s responsibility. We can
           issue a support letter confirming financial assistance, which may
           assist in the visa decision if needed.

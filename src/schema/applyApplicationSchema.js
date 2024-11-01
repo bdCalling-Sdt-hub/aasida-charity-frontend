@@ -23,12 +23,9 @@ const applyApplicationFormSchema = z.object({
   citizenship: z
     .string()
     .min(1, { message: "Citizenship is required." })
-    .refine(
-      (val) => ["India", "Pakistan", "Bangladesh", "Nepal"].includes(val),
-      {
-        message: "Invalid citizenship.",
-      },
-    ),
+    .refine((val) => ["Pakistan"].includes(val), {
+      message: "Invalid citizenship.",
+    }),
 
   // current qualification form
   undergraduate: z.object({
@@ -179,6 +176,9 @@ const applyApplicationFormSchema = z.object({
       .number()
       .min(0, { message: "Tuition fee must be at least 0." }),
     alreadyApplied: z.boolean({
+      message: "Please select Yes or No for 'Already Applied'.",
+    }),
+    admissionGranted: z.boolean({
       message: "Please select Yes or No for 'Already Applied'.",
     }),
     australianVisaApplied: z.boolean({

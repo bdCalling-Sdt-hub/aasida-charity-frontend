@@ -4,7 +4,7 @@ import UDatePicker from "@/components/Form/UDatePicker";
 
 // Common style
 const rowWith4Col =
-  "grid grid-cols-4 lg:mx-auto lg:w-[90%] w-max gap-x-10 whitespace-nowrap px-5 lg:px-0";
+  "grid grid-cols-4 lg:mx-auto lg:w-[95%] w-max gap-x-10 whitespace-nowrap px-5 lg:px-0";
 
 export default function CurrentQualificationForm() {
   return (

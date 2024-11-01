@@ -120,3 +120,23 @@ body {
 .ant-tag {
   font-family: var(--font-uncut-sans) !important;
 }
+
+.ant-table * {
+  font-family: var(--font-uncut-sans) !important;
+}
+
+.ant-dropdown * {
+  font-family: var(--font-uncut-sans) !important;
+}
+.ant-dropdown-trigger {
+  color: white !important;
+}
+
+.ant-table-column-sorter-inner .active > svg {
+  color: rgb(38, 255, 0) !important;
+}
+
+.ant-table-column-sorter-up > svg,
+.ant-table-column-sorter-down > svg {
+  color: white !important;
+}
