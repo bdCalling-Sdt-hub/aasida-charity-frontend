@@ -22,7 +22,7 @@ export default function FormWrapper({
   useEffect(() => {
     if (defaultValues) {
       // Set default values after form is mounted
-      methods.reset(defaultValues, { keepDirtyValues: true });
+      methods.reset(defaultValues);
     }
   }, [defaultValues, methods]);
 

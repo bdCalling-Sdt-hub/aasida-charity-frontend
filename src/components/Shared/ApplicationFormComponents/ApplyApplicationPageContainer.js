@@ -11,11 +11,19 @@ import { useGetSingleUserQuery } from "@/redux/features/user/userApi";
 import { useSelector } from "react-redux";
 import { Button } from "antd";
 import { CheckOutlined } from "@ant-design/icons";
-import { useApplyForApplicationMutation } from "@/redux/features/application/applicationApi";
+import {
+  useApplyForApplicationMutation,
+  useGetMyApplicationsQuery,
+} from "@/redux/features/application/applicationApi";
 import { ErrorToast, SuccessToast } from "@/utils/custom-toast";
 import TextSkeleton from "@/components/TextSkeleton/TextSkeleton";
 import { Tag } from "antd";
 import { Check } from "lucide-react";
+import { SuccessModal } from "@/utils/custom-modal";
+import { BadgeInfo } from "lucide-react";
+import { CircleCheckBig } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default function ApplyApplicationPageContainer() {
   const { user } = useSelector((state) => state.auth);
@@ -24,8 +32,12 @@ export default function ApplyApplicationPageContainer() {
     { skip: !user?.userId },
   );
   const userData = userDataRes?.data || {};
-  // console.log(user?._id);
-  // console.log(userDatares);
+
+  // ============ Applications data =================
+  const { data: applicationsRes } = useGetMyApplicationsQuery(null, {
+    skip: !user?.userId,
+  });
+  const myApplications = applicationsRes?.data || [];
 
   const [applyForApplication, { isLoading: isApplying }] =
     useApplyForApplicationMutation();
@@ -75,7 +87,8 @@ export default function ApplyApplicationPageContainer() {
 
     try {
       await applyForApplication(updatedData).unwrap();
-      SuccessToast("Application submitted successfully");
+
+      SuccessModal("Application submitted successfully!");
     } catch (error) {
       ErrorToast(error?.message);
     }
@@ -138,28 +151,58 @@ export default function ApplyApplicationPageContainer() {
         </div>
       </section>
 
-      {/* Personal information form */}
-      <section className="text-primary-black">
-        <FormWrapper
-          onSubmit={onSubmit}
-          resolver={zodResolver(
-            applyApplicationSchema.applyApplicationFormSchema,
-          )}
-        >
-          <PersonalInfoForm />
-          <CurrentQualificationForm />
-          <EnglishProficiencyForm />
-          <IntendedStudiesForm />
+      {myApplications?.length > 0 ? (
+        <section className="text-center">
+          <div className="flex items-center justify-center gap-x-3">
+            <h3 className="text-3xl font-bold">You have already applied</h3>
+            <CircleCheckBig size={30} color="#4bb543" />
+          </div>
 
-          <Button
-            loading={isApplying}
-            htmlType="submit"
-            className="primary-button mt-10 h-12"
+          <p className="mt-2 text-lg text-gray-500">
+            If you want to see your application details or update it, please
+            click button below:
+          </p>
+
+          <div className="mt-6">
+            <Link href="/update-application">
+              <Button
+                type="primary"
+                htmlType="button"
+                size="large"
+                icon={<ArrowRight size={20} />}
+                iconPosition="end"
+                style={{
+                  paddingInline: "40px",
+                }}
+              >
+                See Details
+              </Button>
+            </Link>
+          </div>
+        </section>
+      ) : (
+        <section className="text-primary-black">
+          <FormWrapper
+            onSubmit={onSubmit}
+            resolver={zodResolver(
+              applyApplicationSchema.applyApplicationFormSchema,
+            )}
           >
-            Submit
-          </Button>
-        </FormWrapper>
-      </section>
+            <PersonalInfoForm />
+            <CurrentQualificationForm />
+            <EnglishProficiencyForm />
+            <IntendedStudiesForm />
+
+            <Button
+              loading={isApplying}
+              htmlType="submit"
+              className="primary-button mt-10 h-12"
+            >
+              Submit
+            </Button>
+          </FormWrapper>
+        </section>
+      )}
     </div>
   );
 }

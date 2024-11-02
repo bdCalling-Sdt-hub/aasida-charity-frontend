@@ -46,40 +46,41 @@ export default function UpdateApplicationContainer({ id }) {
         dateOfBirth: application?.dateOfBirth
           ? dayjs(new Date(application.dateOfBirth)).format("MM-DD-YYYY")
           : null,
-        citizenship: application?.citizenship ?? null,
-        homeAddress: application?.homeAddress ?? null,
+        citizenship: application?.citizenship ?? "",
+        homeAddress: application?.homeAddress ?? "",
 
         // CURRENT QUALIFICATIONS with number conversion
-        "undergraduate.degree":
-          application?.qualifications?.[0]?.degree ?? null,
-        "postgraduate1.degree":
-          application?.qualifications?.[1]?.degree ?? null,
-        "postgraduate2.degree":
-          application?.qualifications?.[2]?.degree ?? null,
+        "undergraduate.degree": application?.qualifications?.[0]?.degree ?? "",
+        "postgraduate1.degree": application?.qualifications?.[1]?.degree ?? "",
+        "postgraduate2.degree": application?.qualifications?.[2]?.degree ?? "",
 
         "undergraduate.discipline":
-          application?.qualifications?.[0]?.discipline ?? null,
+          application?.qualifications?.[0]?.discipline ?? "",
         "postgraduate1.discipline":
-          application?.qualifications?.[1]?.discipline ?? null,
+          application?.qualifications?.[1]?.discipline ?? "",
         "postgraduate2.discipline":
-          application?.qualifications?.[2]?.discipline ?? null,
+          application?.qualifications?.[2]?.discipline ?? "",
 
         "undergraduate.university":
-          application?.qualifications?.[0]?.university ?? null,
+          application?.qualifications?.[0]?.university ?? "",
         "postgraduate1.university":
-          application?.qualifications?.[1]?.university ?? null,
+          application?.qualifications?.[1]?.university ?? "",
         "postgraduate2.university":
-          application?.qualifications?.[2]?.university ?? null,
+          application?.qualifications?.[2]?.university ?? "",
 
         // English Proficiency
-        englishTest: application?.englishProficiency?.testName,
-        englishTestDate: application?.englishProficiency?.testDate,
-        "englishTestResult.overall": application?.englishProficiency?.overall,
+        englishTest: application?.englishProficiency?.testName ?? "",
+        englishTestDate: application?.englishProficiency?.testDate ?? null,
+        "englishTestResult.overall":
+          application?.englishProficiency?.overall ?? null,
         "englishTestResult.listening":
-          application?.englishProficiency?.listening,
-        "englishTestResult.speaking": application?.englishProficiency?.speaking,
-        "englishTestResult.writing": application?.englishProficiency?.writing,
-        "englishTestResult.reading": application?.englishProficiency?.reading,
+          application?.englishProficiency?.listening ?? null,
+        "englishTestResult.speaking":
+          application?.englishProficiency?.speaking ?? null,
+        "englishTestResult.writing":
+          application?.englishProficiency?.writing ?? null,
+        "englishTestResult.reading":
+          application?.englishProficiency?.reading ?? null,
 
         // Commenced and Completed Dates
         "undergraduate.commenced":
@@ -120,25 +121,25 @@ export default function UpdateApplicationContainer({ id }) {
 
         // POST-GRADUATION STUDIES with number conversions where applicable
         "intendedStudiesOption1.degree":
-          application?.intendedPostGraduateStudies?.[0]?.degree ?? null,
+          application?.intendedPostGraduateStudies?.[0]?.degree ?? "",
         "intendedStudiesOption2.degree":
-          application?.intendedPostGraduateStudies?.[1]?.degree ?? null,
+          application?.intendedPostGraduateStudies?.[1]?.degree ?? "",
         "intendedStudiesOption3.degree":
-          application?.intendedPostGraduateStudies?.[2]?.degree ?? null,
+          application?.intendedPostGraduateStudies?.[2]?.degree ?? "",
 
         "intendedStudiesOption1.discipline":
-          application?.intendedPostGraduateStudies?.[0]?.discipline ?? null,
+          application?.intendedPostGraduateStudies?.[0]?.discipline ?? "",
         "intendedStudiesOption2.discipline":
-          application?.intendedPostGraduateStudies?.[1]?.discipline ?? null,
+          application?.intendedPostGraduateStudies?.[1]?.discipline ?? "",
         "intendedStudiesOption3.discipline":
-          application?.intendedPostGraduateStudies?.[2]?.discipline ?? null,
+          application?.intendedPostGraduateStudies?.[2]?.discipline ?? "",
 
         "intendedStudiesOption1.university":
-          application?.intendedPostGraduateStudies?.[0]?.university ?? null,
+          application?.intendedPostGraduateStudies?.[0]?.university ?? "",
         "intendedStudiesOption2.university":
-          application?.intendedPostGraduateStudies?.[1]?.university ?? null,
+          application?.intendedPostGraduateStudies?.[1]?.university ?? "",
         "intendedStudiesOption3.university":
-          application?.intendedPostGraduateStudies?.[2]?.university ?? null,
+          application?.intendedPostGraduateStudies?.[2]?.university ?? "",
 
         "intendedStudiesOption1.plannedStart":
           application?.intendedPostGraduateStudies?.[0]?.plannedStart ?? null,
@@ -177,44 +178,47 @@ export default function UpdateApplicationContainer({ id }) {
 
         // Boolean values as they are
         "intendedStudiesOption1.alreadyApplied":
-          application?.intendedPostGraduateStudies?.[0]?.alreadyApplied ?? null,
+          application?.intendedPostGraduateStudies?.[0]?.alreadyApplied ??
+          false,
         "intendedStudiesOption2.alreadyApplied":
-          application?.intendedPostGraduateStudies?.[1]?.alreadyApplied ?? null,
+          application?.intendedPostGraduateStudies?.[1]?.alreadyApplied ??
+          false,
         "intendedStudiesOption3.alreadyApplied":
-          application?.intendedPostGraduateStudies?.[2]?.alreadyApplied ?? null,
+          application?.intendedPostGraduateStudies?.[2]?.alreadyApplied ??
+          false,
 
         "intendedStudiesOption1.admissionGranted":
           application?.intendedPostGraduateStudies?.[0]?.admissionGranted ??
-          null,
+          false,
         "intendedStudiesOption2.admissionGranted":
           application?.intendedPostGraduateStudies?.[1]?.admissionGranted ??
-          null,
+          false,
         "intendedStudiesOption3.admissionGranted":
           application?.intendedPostGraduateStudies?.[2]?.admissionGranted ??
-          null,
+          false,
 
         "intendedStudiesOption1.australianVisaApplied":
           application?.intendedPostGraduateStudies?.[0]
-            ?.australianVisaApplied ?? null,
+            ?.australianVisaApplied ?? false,
         "intendedStudiesOption2.australianVisaApplied":
           application?.intendedPostGraduateStudies?.[1]
-            ?.australianVisaApplied ?? null,
+            ?.australianVisaApplied ?? false,
         "intendedStudiesOption3.australianVisaApplied":
           application?.intendedPostGraduateStudies?.[2]
-            ?.australianVisaApplied ?? null,
+            ?.australianVisaApplied ?? false,
 
         "intendedStudiesOption1.australianVisaGranted":
           application?.intendedPostGraduateStudies?.[0]
-            ?.australianVisaGranted ?? null,
+            ?.australianVisaGranted ?? false,
         "intendedStudiesOption2.australianVisaGranted":
           application?.intendedPostGraduateStudies?.[1]
-            ?.australianVisaGranted ?? null,
+            ?.australianVisaGranted ?? false,
         "intendedStudiesOption3.australianVisaGranted":
           application?.intendedPostGraduateStudies?.[2]
-            ?.australianVisaGranted ?? null,
+            ?.australianVisaGranted ?? false,
       });
     }
-  }, [isUpdating, application, isApplicationsLoading]);
+  }, [application, isApplicationsLoading]);
 
   const onSubmit = async (data) => {
     const payload = {
@@ -314,9 +318,9 @@ export default function UpdateApplicationContainer({ id }) {
     <section className="text-primary-black">
       <FormWrapper
         onSubmit={onSubmit}
-        // resolver={zodResolver(
-        //   applyApplicationSchema.applyApplicationFormSchema,
-        // )}
+        resolver={zodResolver(
+          applyApplicationSchema.applyApplicationFormSchema,
+        )}
         defaultValues={defaultValues}
       >
         <PersonalInfoForm data={application} />

@@ -140,3 +140,8 @@ body {
 .ant-table-column-sorter-down > svg {
   color: white !important;
 }
+
+.ant-btn,
+.ant-btn * {
+  font-family: var(--font-uncut-sans) !important;
+}
