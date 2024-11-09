@@ -9,6 +9,8 @@ import Link from "next/link";
 import dayjs from "dayjs";
 import { Tag } from "antd";
 import { Check } from "lucide-react";
+import { Trash2 } from "lucide-react";
+import { getTagColor } from "@/utils/getTagColor";
 
 export default function UpdateApplicationPageContainer() {
   // Get applications data
@@ -47,15 +49,19 @@ export default function UpdateApplicationPageContainer() {
           value: "pending",
         },
         {
-          text: "Accepted",
-          value: "accepted",
+          text: "Approved",
+          value: "approved",
+        },
+        {
+          text: "Rejected",
+          value: "rejected",
         },
       ],
       onFilter: (value, record) => record.status.startsWith(value),
       filterSearch: true,
-      width: "40%",
+      width: "25%",
       render: (value) => (
-        <Tag color="geekblue-inverse">
+        <Tag color={getTagColor(value)}>
           {value[0]?.toUpperCase() + value.slice(1)}
         </Tag>
       ),
@@ -65,15 +71,26 @@ export default function UpdateApplicationPageContainer() {
       title: "Action",
       key: "action",
       render: (_, record) => (
-        <Link href={`/update-application/${record.applicationId}`}>
-          <Button
-            type="primary"
-            iconPosition="end"
-            icon={<ArrowRightOutlined />}
-          >
-            See Details
-          </Button>
-        </Link>
+        <>
+          {(record?.status === "pending" || record?.status === "approved") && (
+            <Link href={`/update-application/${record.applicationId}`}>
+              <Button
+                type="primary"
+                iconPosition="end"
+                icon={<ArrowRightOutlined />}
+              >
+                See Details
+              </Button>
+            </Link>
+          )}
+
+          {record?.status === "rejected" && (
+            <Button
+              className="border-none bg-red-500 text-white"
+              icon={<Trash2 size={16} />}
+            />
+          )}
+        </>
       ),
     },
   ];

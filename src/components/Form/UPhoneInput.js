@@ -11,6 +11,7 @@ const UPhoneInput = ({
   className,
   suffix,
   style,
+  defaultCountry,
 }) => {
   return (
     <Controller
@@ -31,6 +32,7 @@ const UPhoneInput = ({
             placeholder="Enter phone number"
             enableSearch
             enableArrow={true}
+            country={defaultCountry}
             {...field}
             style={{
               backgroundColor: "#ffffff",

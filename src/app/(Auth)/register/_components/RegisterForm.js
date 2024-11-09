@@ -10,7 +10,6 @@ import { setToSessionStorage } from "@/utils/handle-session-storage";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "antd";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
 
 export default function RegisterForm() {
   const [signUp, { isLoading: isSigningUp }] = useSignUpMutation();
@@ -97,7 +96,11 @@ export default function RegisterForm() {
           placeholder="Enter your email"
         />
 
-        <UPhoneInput name="phoneNumber" label="Phone Number" />
+        <UPhoneInput
+          name="phoneNumber"
+          label="Phone Number"
+          defaultCountry={"pk"}
+        />
 
         <UInput
           type="password"
