@@ -145,11 +145,3 @@ body {
 .ant-btn * {
   font-family: var(--font-uncut-sans) !important;
 }
-
-table,
-tr,
-td,
-th {
-  border: 1px solid #000;
-  border-collapse: collapse;
-}

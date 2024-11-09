@@ -72,24 +72,15 @@ export default function UpdateApplicationPageContainer() {
       key: "action",
       render: (_, record) => (
         <>
-          {(record?.status === "pending" || record?.status === "approved") && (
-            <Link href={`/update-application/${record.applicationId}`}>
-              <Button
-                type="primary"
-                iconPosition="end"
-                icon={<ArrowRightOutlined />}
-              >
-                See Details
-              </Button>
-            </Link>
-          )}
-
-          {record?.status === "rejected" && (
+          <Link href={`/update-application/${record.applicationId}`}>
             <Button
-              className="border-none bg-red-500 text-white"
-              icon={<Trash2 size={16} />}
-            />
-          )}
+              type="primary"
+              iconPosition="end"
+              icon={<ArrowRightOutlined />}
+            >
+              See Details
+            </Button>
+          </Link>
         </>
       ),
     },

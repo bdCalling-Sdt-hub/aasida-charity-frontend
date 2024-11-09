@@ -33,6 +33,11 @@ const NON_AUTH_LINKS = [
     label: "Privacy Policy",
     route: "/privacy-policy",
   },
+  {
+    key: 5,
+    label: "FAQ",
+    route: "/faq",
+  },
 ];
 
 const AUTHENTICATED_LINKS = [
@@ -66,11 +71,11 @@ const AUTHENTICATED_LINKS = [
     label: "FAQ",
     route: "/faq",
   },
-  {
-    key: 7,
-    label: "Contact Us",
-    route: "/contact",
-  },
+  // {
+  //   key: 7,
+  //   label: "Contact Us",
+  //   route: "/contact",
+  // },
 ];
 
 export default function Sidebar() {
@@ -82,6 +87,7 @@ export default function Sidebar() {
   const handleLogout = () => {
     dispatch(logout());
     router.refresh();
+    router.push("/login");
     toast.success("Logged out successfully!");
   };
 
