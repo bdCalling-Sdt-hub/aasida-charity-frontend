@@ -30,9 +30,11 @@ const UPhoneInput = ({
         >
           <PhoneInput
             placeholder="Enter phone number"
-            enableSearch
-            enableArrow={true}
-            country={defaultCountry}
+            country={"pk"}
+            enableArrow={false}
+            enableSearch={false}
+            disableDropdown
+            onlyCountries={["pk"]}
             {...field}
             style={{
               backgroundColor: "#ffffff",

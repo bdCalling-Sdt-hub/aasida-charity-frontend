@@ -151,15 +151,15 @@ export default function UpdateApplicationContainer({ id }) {
         // Duration (Converted to number)
         "intendedStudiesOption1.duration": application
           ?.intendedPostGraduateStudies?.[0]?.duration
-          ? parseInt(application.intendedPostGraduateStudies[0].duration)
+          ? application.intendedPostGraduateStudies?.[0].duration
           : null,
         "intendedStudiesOption2.duration": application
           ?.intendedPostGraduateStudies?.[1]?.duration
-          ? parseInt(application.intendedPostGraduateStudies[1].duration)
+          ? application.intendedPostGraduateStudies[1].duration
           : null,
         "intendedStudiesOption3.duration": application
           ?.intendedPostGraduateStudies?.[2]?.duration
-          ? parseInt(application.intendedPostGraduateStudies[2].duration)
+          ? application.intendedPostGraduateStudies[2].duration
           : null,
 
         // Tuition Fee (Converted to number)
@@ -305,7 +305,10 @@ export default function UpdateApplicationContainer({ id }) {
       SuccessToast("Application updated successfully");
     } catch (error) {
       ErrorToast(
-        error?.message || error?.data?.message || "Something went wrong!",
+        error?.data?.message ||
+          error?.message ||
+          error?.data?.message ||
+          "Something went wrong!",
       );
     }
   };

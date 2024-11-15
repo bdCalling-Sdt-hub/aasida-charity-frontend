@@ -18,6 +18,7 @@ export default function RegisterPage() {
         Create Account
       </h2>
 
+      {/* Sign Up Form */}
       <RegisterForm />
 
       <div className="flex-center mt-4 gap-x-5">

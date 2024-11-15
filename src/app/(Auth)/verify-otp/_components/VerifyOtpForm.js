@@ -29,6 +29,7 @@ export default function VerifyOtpForm() {
 
       SuccessToast(
         "Account verification successful",
+        null,
         "Please login with email and password",
       );
 
@@ -37,7 +38,7 @@ export default function VerifyOtpForm() {
       removeFromSessionStorage("sign-up-token");
     } catch (error) {
       console.log(error);
-      ErrorToast(error?.message);
+      ErrorToast(error?.data?.message || error?.message);
     }
   };
 

@@ -16,7 +16,7 @@ export default function UpdateApplicationPageContainer() {
   // Get applications data
   const { data: applicationsRes, isLoading: isApplicationsLoading } =
     useGetMyApplicationsQuery();
-  const applications = applicationsRes?.data || []; // Note: This will only work if there is only one application
+  const applications = applicationsRes?.data || []; // Note: This will work, if there is only one application
   const application = applications?.[0] || {};
 
   // Applicant data

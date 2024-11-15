@@ -90,7 +90,7 @@ export default function ApplyApplicationPageContainer() {
 
       SuccessModal("Application submitted successfully!");
     } catch (error) {
-      ErrorToast(error?.message);
+      ErrorToast(error?.data?.message || error?.message);
     }
   };
 

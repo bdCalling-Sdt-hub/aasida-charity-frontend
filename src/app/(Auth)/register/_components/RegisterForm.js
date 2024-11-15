@@ -49,7 +49,7 @@ export default function RegisterForm() {
 
       if (res?.success) {
         SuccessToast(
-          "Account creation successfully",
+          "Account creation successful",
           null,
           "Please verify your email",
         );
@@ -61,7 +61,8 @@ export default function RegisterForm() {
         router.push("/verify-otp");
       }
     } catch (error) {
-      ErrorToast(error?.message);
+      console.log(error);
+      ErrorToast(error?.data?.message || error?.message);
     }
   };
 
@@ -96,11 +97,7 @@ export default function RegisterForm() {
           placeholder="Enter your email"
         />
 
-        <UPhoneInput
-          name="phoneNumber"
-          label="Phone Number"
-          defaultCountry={"pk"}
-        />
+        <UPhoneInput name="phoneNumber" label="Phone Number" />
 
         <UInput
           type="password"

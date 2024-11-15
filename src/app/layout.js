@@ -36,7 +36,12 @@ export default function RootLayout({ children }) {
         <Provider>
           <main>{children}</main>
 
-          <Toaster richColors duration={1800} position="bottom-center" />
+          <Toaster
+            richColors
+            duration={2500}
+            position="bottom-center"
+            closeButton
+          />
           <NextTopLoader />
         </Provider>
       </body>
