@@ -40,7 +40,7 @@ export default function UpdateApplicationContainer({ id }) {
   const [defaultValues, setDefaultValues] = useState({});
 
   useEffect(() => {
-    if (application) {
+    if (application?._id) {
       setDefaultValues({
         // Basic info
         dateOfBirth: application?.dateOfBirth
@@ -220,6 +220,177 @@ export default function UpdateApplicationContainer({ id }) {
     }
   }, [application, isApplicationsLoading]);
 
+  const dfltValues = {
+    // Basic info
+    dateOfBirth: application?.dateOfBirth
+      ? dayjs(new Date(application.dateOfBirth)).format("MM-DD-YYYY")
+      : null,
+    citizenship: application?.citizenship ?? "",
+    homeAddress: application?.homeAddress ?? "",
+
+    // CURRENT QUALIFICATIONS with number conversion
+    "undergraduate.degree": application?.qualifications?.[0]?.degree ?? "",
+    "postgraduate1.degree": application?.qualifications?.[1]?.degree ?? "",
+    "postgraduate2.degree": application?.qualifications?.[2]?.degree ?? "",
+
+    "undergraduate.discipline":
+      application?.qualifications?.[0]?.discipline ?? "",
+    "postgraduate1.discipline":
+      application?.qualifications?.[1]?.discipline ?? "",
+    "postgraduate2.discipline":
+      application?.qualifications?.[2]?.discipline ?? "",
+
+    "undergraduate.university":
+      application?.qualifications?.[0]?.university ?? "",
+    "postgraduate1.university":
+      application?.qualifications?.[1]?.university ?? "",
+    "postgraduate2.university":
+      application?.qualifications?.[2]?.university ?? "",
+
+    // English Proficiency
+    englishTest: application?.englishProficiency?.testName ?? "",
+    englishTestDate: application?.englishProficiency?.testDate ?? null,
+    "englishTestResult.overall":
+      application?.englishProficiency?.overall ?? null,
+    "englishTestResult.listening":
+      application?.englishProficiency?.listening ?? null,
+    "englishTestResult.speaking":
+      application?.englishProficiency?.speaking ?? null,
+    "englishTestResult.writing":
+      application?.englishProficiency?.writing ?? null,
+    "englishTestResult.reading":
+      application?.englishProficiency?.reading ?? null,
+
+    // Commenced and Completed Dates
+    "undergraduate.commenced":
+      application?.qualifications?.[0]?.commenced ?? null,
+    "postgraduate1.commenced":
+      application?.qualifications?.[1]?.commenced ?? null,
+    "postgraduate2.commenced":
+      application?.qualifications?.[2]?.commenced ?? null,
+
+    "undergraduate.completed":
+      application?.qualifications?.[0]?.completed ?? null,
+    "postgraduate1.completed":
+      application?.qualifications?.[1]?.completed ?? null,
+    "postgraduate2.completed":
+      application?.qualifications?.[2]?.completed ?? null,
+
+    // Marks (Converted to number)
+    "undergraduate.marks": application?.qualifications?.[0]?.overallMark
+      ? parseFloat(application.qualifications[0].overallMark)
+      : null,
+    "postgraduate1.marks": application?.qualifications?.[1]?.overallMark
+      ? parseFloat(application.qualifications[1].overallMark)
+      : null,
+    "postgraduate2.marks": application?.qualifications?.[2]?.overallMark
+      ? parseFloat(application.qualifications[2].overallMark)
+      : null,
+
+    // GPA (Converted to number)
+    "undergraduate.gpa": application?.qualifications?.[0]?.overallGPA
+      ? parseFloat(application.qualifications[0].overallGPA)
+      : null,
+    "postgraduate1.gpa": application?.qualifications?.[1]?.overallGPA
+      ? parseFloat(application.qualifications[1].overallGPA)
+      : null,
+    "postgraduate2.gpa": application?.qualifications?.[2]?.overallGPA
+      ? parseFloat(application.qualifications[2].overallGPA)
+      : null,
+
+    // POST-GRADUATION STUDIES with number conversions where applicable
+    "intendedStudiesOption1.degree":
+      application?.intendedPostGraduateStudies?.[0]?.degree ?? "",
+    "intendedStudiesOption2.degree":
+      application?.intendedPostGraduateStudies?.[1]?.degree ?? "",
+    "intendedStudiesOption3.degree":
+      application?.intendedPostGraduateStudies?.[2]?.degree ?? "",
+
+    "intendedStudiesOption1.discipline":
+      application?.intendedPostGraduateStudies?.[0]?.discipline ?? "",
+    "intendedStudiesOption2.discipline":
+      application?.intendedPostGraduateStudies?.[1]?.discipline ?? "",
+    "intendedStudiesOption3.discipline":
+      application?.intendedPostGraduateStudies?.[2]?.discipline ?? "",
+
+    "intendedStudiesOption1.university":
+      application?.intendedPostGraduateStudies?.[0]?.university ?? "",
+    "intendedStudiesOption2.university":
+      application?.intendedPostGraduateStudies?.[1]?.university ?? "",
+    "intendedStudiesOption3.university":
+      application?.intendedPostGraduateStudies?.[2]?.university ?? "",
+
+    "intendedStudiesOption1.plannedStart":
+      application?.intendedPostGraduateStudies?.[0]?.plannedStart ?? null,
+    "intendedStudiesOption2.plannedStart":
+      application?.intendedPostGraduateStudies?.[1]?.plannedStart ?? null,
+    "intendedStudiesOption3.plannedStart":
+      application?.intendedPostGraduateStudies?.[2]?.plannedStart ?? null,
+
+    // Duration (Converted to number)
+    "intendedStudiesOption1.duration": application
+      ?.intendedPostGraduateStudies?.[0]?.duration
+      ? application.intendedPostGraduateStudies?.[0].duration
+      : null,
+    "intendedStudiesOption2.duration": application
+      ?.intendedPostGraduateStudies?.[1]?.duration
+      ? application.intendedPostGraduateStudies[1].duration
+      : null,
+    "intendedStudiesOption3.duration": application
+      ?.intendedPostGraduateStudies?.[2]?.duration
+      ? application.intendedPostGraduateStudies[2].duration
+      : null,
+
+    // Tuition Fee (Converted to number)
+    "intendedStudiesOption1.tuitionFee": application
+      ?.intendedPostGraduateStudies?.[0]?.tuitionFee
+      ? parseFloat(application.intendedPostGraduateStudies[0].tuitionFee)
+      : null,
+    "intendedStudiesOption2.tuitionFee": application
+      ?.intendedPostGraduateStudies?.[1]?.tuitionFee
+      ? parseFloat(application.intendedPostGraduateStudies[1].tuitionFee)
+      : null,
+    "intendedStudiesOption3.tuitionFee": application
+      ?.intendedPostGraduateStudies?.[2]?.tuitionFee
+      ? parseFloat(application.intendedPostGraduateStudies[2].tuitionFee)
+      : null,
+
+    // Boolean values as they are
+    "intendedStudiesOption1.alreadyApplied":
+      application?.intendedPostGraduateStudies?.[0]?.alreadyApplied ?? false,
+    "intendedStudiesOption2.alreadyApplied":
+      application?.intendedPostGraduateStudies?.[1]?.alreadyApplied ?? false,
+    "intendedStudiesOption3.alreadyApplied":
+      application?.intendedPostGraduateStudies?.[2]?.alreadyApplied ?? false,
+
+    "intendedStudiesOption1.admissionGranted":
+      application?.intendedPostGraduateStudies?.[0]?.admissionGranted ?? false,
+    "intendedStudiesOption2.admissionGranted":
+      application?.intendedPostGraduateStudies?.[1]?.admissionGranted ?? false,
+    "intendedStudiesOption3.admissionGranted":
+      application?.intendedPostGraduateStudies?.[2]?.admissionGranted ?? false,
+
+    "intendedStudiesOption1.australianVisaApplied":
+      application?.intendedPostGraduateStudies?.[0]?.australianVisaApplied ??
+      false,
+    "intendedStudiesOption2.australianVisaApplied":
+      application?.intendedPostGraduateStudies?.[1]?.australianVisaApplied ??
+      false,
+    "intendedStudiesOption3.australianVisaApplied":
+      application?.intendedPostGraduateStudies?.[2]?.australianVisaApplied ??
+      false,
+
+    "intendedStudiesOption1.australianVisaGranted":
+      application?.intendedPostGraduateStudies?.[0]?.australianVisaGranted ??
+      false,
+    "intendedStudiesOption2.australianVisaGranted":
+      application?.intendedPostGraduateStudies?.[1]?.australianVisaGranted ??
+      false,
+    "intendedStudiesOption3.australianVisaGranted":
+      application?.intendedPostGraduateStudies?.[2]?.australianVisaGranted ??
+      false,
+  };
+
   const onSubmit = async (data) => {
     const payload = {
       dateOfBirth: data?.dateOfBirth,
@@ -324,12 +495,15 @@ export default function UpdateApplicationContainer({ id }) {
         resolver={zodResolver(
           applyApplicationSchema.applyApplicationFormSchema,
         )}
-        defaultValues={defaultValues}
+        defaultValues={dfltValues}
       >
         <PersonalInfoForm data={application} />
         <CurrentQualificationForm />
         <EnglishProficiencyForm data={application} />
-        <IntendedStudiesForm data={application} />
+        <IntendedStudiesForm
+          data={application}
+          isApplicationsLoading={isApplicationsLoading}
+        />
 
         <Button
           loading={isUpdating}

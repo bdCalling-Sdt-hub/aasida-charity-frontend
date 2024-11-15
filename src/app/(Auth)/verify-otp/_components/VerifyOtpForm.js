@@ -25,7 +25,6 @@ export default function VerifyOtpForm() {
 
     try {
       const res = await verifyOtp({ otp }).unwrap();
-      console.log(res?.data?.user);
 
       SuccessToast(
         "Account verification successful",
@@ -37,7 +36,6 @@ export default function VerifyOtpForm() {
       router.refresh();
       removeFromSessionStorage("sign-up-token");
     } catch (error) {
-      console.log(error);
       ErrorToast(error?.data?.message || error?.message);
     }
   };
